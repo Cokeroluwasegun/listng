@@ -1,0 +1,11 @@
+*.md
+*.txt
+*.yml
+*.yaml
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!tsconfig.tsbuildinfo
+!next-env.d.ts
+*.lock
