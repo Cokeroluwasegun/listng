@@ -1,0 +1,104 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+  BETTER_AUTH_URL: ${{ vars.BETTER_AUTH_URL || 'http://localhost:3000' }}
+  SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+  UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+  UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+
+jobs:
+  lint-and-typecheck:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+
+  test-unit:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run test -- --coverage
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage
+          path: coverage/
+          retention-days: 7
+
+  test-e2e:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+        env:
+          PLAYWRIGHT_BASE_URL: http://localhost:3000
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [lint-and-typecheck, test-unit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build
+        env:
+          NODE_ENV: production
+      - uses: actions/upload-artifact@v4
+        with:
+          name: next-build
+          path: .next/
+          retention-days: 1
+
+  deploy-preview:
+    name: Deploy Preview
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: github.event_name == 'pull_request'
+    environment:
+      name: preview
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: next-build
+          path: .next/
+      - run: echo "Preview deployment configured. Add Vercel/GitHub Actions deploy step here."
