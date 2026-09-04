@@ -7,19 +7,18 @@ declare global {
 }
 
 function createAdapter(connectionString: string) {
-  // Neon serverless requires the Neon WebSocket protocol; use the
-  // pg driver adapter for plain PostgreSQL (local dev, other hosts).
   if (connectionString.includes("neon.tech")) {
     return new PrismaNeon({ connectionString });
   }
   return new PrismaPg({ connectionString });
 }
 
-function createPrismaClient() {
+function createPrismaClient(): PrismaClient {
   const connectionString = process.env.DATABASE_URL;
 
   if (!connectionString) {
-    throw new Error("DATABASE_URL environment variable is not set");
+    console.warn("[db] DATABASE_URL not set, returning null client");
+    return null as unknown as PrismaClient;
   }
 
   const adapter = createAdapter(connectionString);
@@ -33,8 +32,12 @@ function createPrismaClient() {
   } as ConstructorParameters<typeof PrismaClient>[0]);
 }
 
-export const db = global.__db ?? createPrismaClient();
+const globalForPrisma = globalThis as unknown as {
+  __db: PrismaClient | undefined;
+};
+
+export const db = globalForPrisma.__db ?? createPrismaClient();
 
 if (process.env.NODE_ENV !== "production") {
-  global.__db = db;
+  globalForPrisma.__db = db;
 }
