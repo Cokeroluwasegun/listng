@@ -6,7 +6,7 @@ import { z } from "zod";
 import { Prisma } from "@prisma/client";
 import { moderateText, logModeration } from "@/lib/moderation";
 import { validateImageUrls } from "@/lib/image-validation";
-import { logger, newRequestId } from "@/lib/logger";
+import { logger } from "@/lib/logger";
 import { getOrAssignRequestId } from "@/lib/request-id";
 
 const listingSchema = z.object({

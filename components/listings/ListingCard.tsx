@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { formatPrice, formatTimeAgo } from "@/lib/utils";
 
 export interface ListingCardProps {
@@ -47,24 +48,28 @@ export default function ListingCard({ listing }: ListingCardProps) {
     setIsWishlisted(!isWishlisted);
   };
 
-  const mainImage = listing.images && listing.images.length > 0 
-    ? listing.images[0] 
-    : "/placeholder-image.jpg";
+  const mainImage =
+    listing.images && listing.images.length > 0
+      ? listing.images[0]
+      : "https://placehold.co/600x600/f3f4f6/9ca3af?text=No+Image";
 
   const numericPrice = Number(listing.price);
 
   return (
-    <Link 
+    <Link
       href={`/listings/${listing.id}`}
       className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[var(--shadow-sm)] border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
     >
       <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
-        <img 
-          src={mainImage} 
+        <Image
+          src={mainImage}
           alt={listing.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          priority={false}
         />
-        
+
         <div className="absolute top-3 left-3 flex flex-col gap-2 items-start">
           {listing.isFeatured && (
             <span className="bg-amber-400 text-white text-xs font-bold px-2 py-1 rounded flex items-center shadow-sm">
@@ -81,16 +86,16 @@ export default function ListingCard({ listing }: ListingCardProps) {
           )}
         </div>
 
-        <button 
+        <button
           onClick={toggleWishlist}
           className="absolute top-3 right-3 p-2 bg-white/80 backdrop-blur-sm rounded-full shadow-sm hover:bg-white transition-colors"
           aria-label="Toggle wishlist"
         >
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            className={`h-5 w-5 transition-colors ${isWishlisted ? 'text-rose-500 fill-rose-500' : 'text-gray-500 fill-none'}`} 
-            viewBox="0 0 24 24" 
-            stroke="currentColor" 
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={`h-5 w-5 transition-colors ${isWishlisted ? "text-rose-500 fill-rose-500" : "text-gray-500 fill-none"}`}
+            viewBox="0 0 24 24"
+            stroke="currentColor"
             strokeWidth={isWishlisted ? 0 : 2}
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -104,32 +109,44 @@ export default function ListingCard({ listing }: ListingCardProps) {
             {listing.title}
           </h3>
         </div>
-        
+
         <div className="font-bold text-lg text-gray-900 mb-3">
-          {typeof formatPrice === 'function' ? formatPrice(numericPrice) : `₦${Intl.NumberFormat('en-NG').format(numericPrice)}`}
-          {listing.isNegotiable && <span className="text-xs font-normal text-gray-500 ml-1">(Negotiable)</span>}
+          {typeof formatPrice === "function"
+            ? formatPrice(numericPrice)
+            : `₦${Intl.NumberFormat("en-NG").format(numericPrice)}`}
+          {listing.isNegotiable && (
+            <span className="text-xs font-normal text-gray-500 ml-1">(Negotiable)</span>
+          )}
         </div>
 
         <div className="mt-auto space-y-2">
           <div className="flex items-center justify-between text-xs text-gray-500">
             <div className="flex items-center bg-gray-100 px-2 py-1 rounded-md">
-              <span className="truncate max-w-[120px]">{listing.market.name}, {listing.market.city.name}</span>
+              <span className="truncate max-w-[120px]">
+                {listing.market.name}, {listing.market.city.name}
+              </span>
             </div>
-            <span className="font-medium bg-[hsl(var(--muted))] px-2 py-1 rounded-md">{listing.condition}</span>
+            <span className="font-medium bg-[hsl(var(--muted))] px-2 py-1 rounded-md">
+              {listing.condition}
+            </span>
           </div>
 
           <div className="flex items-center justify-between pt-3 mt-3 border-t border-gray-100">
             <div className="flex items-center">
-              <div className="relative">
-                <div className="w-6 h-6 rounded-full bg-gray-200 overflow-hidden">
-                  {listing.seller.image ? (
-                    <img src={listing.seller.image} alt={listing.seller.name} className="w-full h-full object-cover" />
-                  ) : (
-                    <div className="w-full h-full bg-[hsl(var(--color-primary))] text-white flex items-center justify-center text-xs font-bold">
-                      {listing.seller.name.charAt(0).toUpperCase()}
-                    </div>
-                  )}
-                </div>
+              <div className="relative w-6 h-6">
+                {listing.seller.image ? (
+                  <Image
+                    src={listing.seller.image}
+                    alt={listing.seller.name}
+                    fill
+                    sizes="24px"
+                    className="rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full rounded-full bg-[hsl(var(--color-primary))] text-white flex items-center justify-center text-xs font-bold">
+                    {listing.seller.name.charAt(0).toUpperCase()}
+                  </div>
+                )}
                 {listing.seller.isFaceVerified && (
                   <div className="absolute -bottom-1 -right-1 bg-blue-500 text-white rounded-full p-[2px] border border-white">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-2 w-2" viewBox="0 0 20 20" fill="currentColor">
@@ -138,10 +155,14 @@ export default function ListingCard({ listing }: ListingCardProps) {
                   </div>
                 )}
               </div>
-              <span className="text-xs text-gray-600 ml-2 truncate max-w-[80px]">{listing.seller.name}</span>
+              <span className="text-xs text-gray-600 ml-2 truncate max-w-[80px]">
+                {listing.seller.name}
+              </span>
             </div>
             <span className="text-xs text-gray-400">
-              {typeof formatTimeAgo === 'function' ? formatTimeAgo(new Date(listing.createdAt)) : new Date(listing.createdAt).toLocaleDateString()}
+              {typeof formatTimeAgo === "function"
+                ? formatTimeAgo(new Date(listing.createdAt))
+                : new Date(listing.createdAt).toLocaleDateString()}
             </span>
           </div>
         </div>

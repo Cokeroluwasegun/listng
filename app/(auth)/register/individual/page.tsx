@@ -99,8 +99,8 @@ export default function IndividualRegisterPage() {
     }
   }, [selectedState]);
 
-  const onAccountSubmit = (data: AccountData) => setStep(2);
-  const onLocationSubmit = (data: LocationData) => setStep(3);
+  const onAccountSubmit = (_data: AccountData) => setStep(2);
+  const onLocationSubmit = (_data: LocationData) => setStep(3);
   
   const handleFaceCapture = (descriptor: Float32Array | null) => {
     if (descriptor) {
@@ -141,7 +141,7 @@ export default function IndividualRegisterPage() {
       } else {
         setError(data.error || "Registration failed. Please try again.");
       }
-    } catch (err) {
+    } catch {
       setError("An unexpected error occurred.");
     } finally {
       setIsSubmitting(false);

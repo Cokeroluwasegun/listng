@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { ChevronRight, ChevronLeft, Loader2, CheckCircle2, AlertCircle, Building, ShieldCheck } from "lucide-react";
+import { ChevronRight, ChevronLeft, Loader2, CheckCircle2, ShieldCheck } from "lucide-react";
 import { FaceCapture } from "@/components/auth/FaceCapture";
 
 const NIGERIAN_STATES = [
@@ -112,8 +112,8 @@ export default function VendorRegisterPage() {
     }
   }, [selectedState]);
 
-  const onAccountSubmit = (data: AccountData) => setStep(2);
-  const onBusinessSubmit = (data: BusinessData) => setStep(3);
+  const onAccountSubmit = (_data: AccountData) => setStep(2);
+  const onBusinessSubmit = (_data: BusinessData) => setStep(3);
 
   const verifyCac = async () => {
     if (!cacType || !cacNumber) {
@@ -136,7 +136,7 @@ export default function VendorRegisterPage() {
       } else {
         setCacError("Invalid RC number format. Could not verify.");
       }
-    } catch (err) {
+    } catch {
       setCacError("Verification service unavailable. You can skip this for now.");
     } finally {
       setIsVerifyingCac(false);
@@ -187,7 +187,7 @@ export default function VendorRegisterPage() {
       } else {
         setError(data.error || "Registration failed. Please try again.");
       }
-    } catch (err) {
+    } catch {
       setError("An unexpected error occurred.");
     } finally {
       setIsSubmitting(false);

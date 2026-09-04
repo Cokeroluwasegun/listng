@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { getPusherClient, getConversationChannel, PUSHER_EVENTS } from "@/lib/pusher";
-import { Send, Image as ImageIcon, ArrowLeft, ShieldCheck, MoreVertical } from "lucide-react";
+import { Send, ArrowLeft } from "lucide-react";
 import { cn, formatTimeAgo, getInitials } from "@/lib/utils";
 import Link from "next/link";
 
@@ -44,20 +44,22 @@ export default function MessagesPage() {
   // Load conversations
   useEffect(() => {
     if (!session) return;
-    fetch("/api/conversations")
+    void fetch("/api/conversations")
       .then((r) => r.json())
       .then((data) => {
         setConversations(data.conversations || []);
         setLoading(false);
-      });
+      })
+      .catch(() => setLoading(false));
   }, [session]);
 
   // Load messages when conversation selected
   useEffect(() => {
     if (!selectedConvId) return;
-    fetch(`/api/conversations/${selectedConvId}/messages`)
+    void fetch(`/api/conversations/${selectedConvId}/messages`)
       .then((r) => r.json())
-      .then((data) => setMessages(data.messages || []));
+      .then((data) => setMessages(data.messages || []))
+      .catch(console.error);
   }, [selectedConvId]);
 
   // Subscribe to Pusher
@@ -262,7 +264,7 @@ export default function MessagesPage() {
                 <textarea
                   value={messageInput}
                   onChange={(e) => setMessageInput(e.target.value)}
-                  onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); } }}
+                  onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); void sendMessage(); } }}
                   placeholder="Type a message..."
                   rows={1}
                   className="flex-1 resize-none bg-transparent text-sm outline-none placeholder:text-[hsl(var(--muted-foreground))]"

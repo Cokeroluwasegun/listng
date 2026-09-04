@@ -1,7 +1,6 @@
 import React from 'react';
 import { Users, Package, CreditCard, Clock, Activity, ArrowUpRight, TrendingUp } from 'lucide-react';
-import { db } from '@/lib/db';
-import { formatPrice, formatTimeAgo, cn } from '@/lib/utils';
+import { formatPrice, formatTimeAgo } from '@/lib/utils';
 import Link from 'next/link';
 
 export default async function AdminDashboardPage() {

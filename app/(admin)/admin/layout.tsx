@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { auth } from '@/lib/auth';
 import { db } from '@/lib/db';
-import { cn } from '@/lib/utils';
+// Removed unused cn import - was causing lint error
 import { SignOutButton } from '@/components/auth/SignOutButton';
 
 export default async function AdminLayout({

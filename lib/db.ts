@@ -3,7 +3,6 @@ import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaPg } from "@prisma/adapter-pg";
 
 declare global {
-  // eslint-disable-next-line no-var
   var __db: PrismaClient | undefined;
 }
 

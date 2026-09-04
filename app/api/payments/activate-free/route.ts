@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { addDays } from "date-fns";
-import { rateLimit, getClientIp } from "@/lib/rate-limit";
+import { rateLimit } from "@/lib/rate-limit";
 
 // Activate free plan without payment
 export async function POST(request: NextRequest) {
