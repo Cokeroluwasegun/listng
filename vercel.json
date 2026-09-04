@@ -1,6 +1,6 @@
 {
   "installCommand": "npm install --legacy-peer-deps",
-  "buildCommand": "DATABASE_URL='postgresql://placeholder' UPSTASH_REDIS_REST_URL='https://placeholder.upstash.io' UPSTASH_REDIS_REST_TOKEN='placeholder' npx prisma generate && npm run build",
+  "buildCommand": "DATABASE_URL='postgresql://neondb_owner:npg_placeholder@ep-cool-shadow-axr1zh00-pooler.c-4.us-east-2.aws.neon.tech/neondb?channel_binding=require&sslmode=require' UPSTASH_REDIS_REST_URL='https://placeholder.upstash.io' UPSTASH_REDIS_REST_TOKEN='placeholder' npx prisma generate && npm run build",
   "crons": [
     {
       "path": "/api/cron/sweep",

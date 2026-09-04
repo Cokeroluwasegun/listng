@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { db } from "@/lib/db";
 import { AdminPackagesClient } from "@/components/admin/AdminPackagesClient";
 
