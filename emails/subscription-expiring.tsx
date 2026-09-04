@@ -26,7 +26,7 @@ export default function SubscriptionExpiringEmail({
   return (
     <Html lang="en">
       <Head />
-      <Preview>Your {packageName} subscription expires in {daysRemaining} days</Preview>
+      <Preview>{`Your ${packageName} subscription expires in ${daysRemaining} days`}</Preview>
       <Tailwind>
         <Body className="bg-gray-50 font-sans">
           <Container className="mx-auto my-8 max-w-xl rounded-lg border border-gray-200 bg-white p-8">

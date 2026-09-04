@@ -20,8 +20,8 @@ async function sendEmail({
     return { success: false, error: "RESEND_API_KEY not configured" };
   }
 
-  const html = render(react, { pretty: true });
-  const text = render(react, { plainText: true });
+  const html = await render(react, { pretty: true });
+  const text = await render(react, { plainText: true });
 
   try {
     const { error } = await resend.emails.send({
@@ -46,7 +46,7 @@ async function sendEmail({
 }
 
 export async function sendWelcomeEmail(name: string, email: string) {
-  const WelcomeEmail = (await import("./emails/welcome")).default;
+  const WelcomeEmail = (await import("../emails/welcome")).default;
   return sendEmail({
     to: email,
     subject: "Welcome to ListNG",
@@ -69,7 +69,7 @@ export async function sendPaymentReceiptEmail(
     endDate: string;
   }
 ) {
-  const PaymentReceiptEmail = (await import("./emails/payment-receipt")).default;
+  const PaymentReceiptEmail = (await import("../emails/payment-receipt")).default;
   return sendEmail({
     to: email,
     subject: `Payment confirmed — ${data.packageName}`,
@@ -88,7 +88,7 @@ export async function sendListingApprovedEmail(
   email: string,
   data: { listingTitle: string; listingUrl: string }
 ) {
-  const ListingApprovedEmail = (await import("./emails/listing-approved")).default;
+  const ListingApprovedEmail = (await import("../emails/listing-approved")).default;
   return sendEmail({
     to: email,
     subject: "Your listing is live!",
@@ -101,7 +101,7 @@ export async function sendListingRejectedEmail(
   email: string,
   data: { listingTitle: string; reason: string; supportUrl: string }
 ) {
-  const ListingRejectedEmail = (await import("./emails/listing-rejected")).default;
+  const ListingRejectedEmail = (await import("../emails/listing-rejected")).default;
   return sendEmail({
     to: email,
     subject: "Action needed — your listing needs changes",
@@ -114,7 +114,7 @@ export async function sendSubscriptionExpiringEmail(
   email: string,
   data: { packageName: string; daysRemaining: number; renewUrl: string }
 ) {
-  const SubscriptionExpiringEmail = (await import("./emails/subscription-expiring")).default;
+  const SubscriptionExpiringEmail = (await import("../emails/subscription-expiring")).default;
   return sendEmail({
     to: email,
     subject: `Your ${data.packageName} expires in ${data.daysRemaining} days`,
@@ -127,7 +127,7 @@ export async function sendMessageNotificationEmail(
   recipientEmail: string,
   data: { senderName: string; messagePreview: string; conversationUrl: string }
 ) {
-  const MessageNotificationEmail = (await import("./emails/message-notification")).default;
+  const MessageNotificationEmail = (await import("../emails/message-notification")).default;
   return sendEmail({
     to: recipientEmail,
     subject: `New message from ${data.senderName}`,
