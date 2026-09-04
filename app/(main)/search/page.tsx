@@ -70,7 +70,7 @@ export default async function SearchPage(props: { searchParams: Promise<Record<s
   const totalPages = Math.ceil(totalCount / take);
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--muted))] py-8">
+    <div className="min-h-screen bg-[var(--muted)] py-8">
       <div className="max-w-7xl mx-auto px-4">
         
         <div className="flex flex-col md:flex-row gap-6">
@@ -78,7 +78,7 @@ export default async function SearchPage(props: { searchParams: Promise<Record<s
           <div className="w-full md:w-64 lg:w-72 shrink-0">
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sticky top-24">
               <div className="flex items-center gap-2 mb-6 text-lg font-display font-bold">
-                <SlidersHorizontal className="w-5 h-5 text-[hsl(var(--color-primary))]" />
+                <SlidersHorizontal className="w-5 h-5 text-[var(--color-primary)]" />
                 Filters
               </div>
               <FilterPanel initialValues={{ q, state, category, condition, minPrice, maxPrice, sort }} />
@@ -98,7 +98,7 @@ export default async function SearchPage(props: { searchParams: Promise<Record<s
               <div className="flex items-center gap-2">
                 <label className="text-sm text-gray-500 font-medium">Sort by:</label>
                 <select 
-                  className="bg-gray-50 border border-gray-200 text-sm rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-[hsl(var(--color-primary))]"
+                  className="bg-gray-50 border border-gray-200 text-sm rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
                   defaultValue={sort}
                   // Ideally use a client component wrapper for onChange router.push
                 >
@@ -126,7 +126,7 @@ export default async function SearchPage(props: { searchParams: Promise<Record<s
                       Page {page} of {totalPages}
                     </span>
                     {page < totalPages && (
-                      <a href={`?${new URLSearchParams({ ...(searchParams as Record<string, unknown>), page: (page+1).toString() }).toString()}`} className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-[hsl(var(--color-primary))] border-[hsl(var(--color-primary))] hover:bg-orange-50 font-medium text-sm">
+                      <a href={`?${new URLSearchParams({ ...(searchParams as Record<string, unknown>), page: (page+1).toString() }).toString()}`} className="px-4 py-2 border border-gray-300 rounded-lg bg-white text-[var(--color-primary)] border-[var(--color-primary)] hover:bg-orange-50 font-medium text-sm">
                         Next
                       </a>
                     )}
@@ -142,7 +142,7 @@ export default async function SearchPage(props: { searchParams: Promise<Record<s
                 <p className="text-gray-500 max-w-md mx-auto mb-8">
                   We couldn&apos;t find any listings matching your current filters. Try removing some filters or searching with different keywords.
                 </p>
-                <a href="/search" className="inline-flex bg-[hsl(var(--color-primary))] text-white font-bold px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors">
+                <a href="/search" className="inline-flex bg-[var(--color-primary)] text-white font-bold px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors">
                   Clear all filters
                 </a>
               </div>

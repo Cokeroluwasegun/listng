@@ -197,24 +197,24 @@ export default function VendorRegisterPage() {
   const steps = ["Account", "Business", "CAC", "Face ID", "Review"];
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--muted))] py-12 px-4 sm:px-6 flex items-center justify-center">
-      <div className="max-w-xl w-full bg-[hsl(var(--background))] rounded-2xl shadow-xl overflow-hidden border border-[hsl(var(--border))]">
+    <div className="min-h-screen bg-[var(--muted)] py-12 px-4 sm:px-6 flex items-center justify-center">
+      <div className="max-w-xl w-full bg-[var(--background)] rounded-2xl shadow-xl overflow-hidden border border-[var(--border)]">
         
         {/* Progress Header */}
-        <div className="bg-[hsl(var(--color-primary))/0.05] p-6 border-b border-[hsl(var(--border))]">
+        <div className="bg-[color-mix(in_srgb,var(--color-primary),transparent_95%)] p-6 border-b border-[var(--border)]">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-display font-bold text-[hsl(var(--foreground))]">
+            <h2 className="text-2xl font-display font-bold text-[var(--foreground)]">
               Vendor Registration
             </h2>
-            <span className="text-sm font-medium text-[hsl(var(--color-primary))]">
+            <span className="text-sm font-medium text-[var(--color-primary)]">
               Step {step} of 5
             </span>
           </div>
           
           <div className="flex justify-between relative">
-            <div className="absolute top-1/2 left-0 right-0 h-1 -translate-y-1/2 bg-[hsl(var(--muted))] rounded">
+            <div className="absolute top-1/2 left-0 right-0 h-1 -translate-y-1/2 bg-[var(--muted)] rounded">
               <div 
-                className="h-full bg-[hsl(var(--color-primary))] rounded transition-all duration-300"
+                className="h-full bg-[var(--color-primary)] rounded transition-all duration-300"
                 style={{ width: `${((step - 1) / 4) * 100}%` }}
               />
             </div>
@@ -222,13 +222,13 @@ export default function VendorRegisterPage() {
               <div key={label} className="relative z-10 flex flex-col items-center">
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${
                   i + 1 <= step 
-                    ? "bg-[hsl(var(--color-primary))] text-white" 
-                    : "bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))] border border-[hsl(var(--border))]"
+                    ? "bg-[var(--color-primary)] text-white" 
+                    : "bg-[var(--muted)] text-[var(--muted-foreground)] border border-[var(--border)]"
                 }`}>
                   {i + 1 < step ? <CheckCircle2 className="w-3 h-3" /> : i + 1}
                 </div>
                 <span className={`text-[10px] mt-1 absolute -bottom-4 w-16 text-center ${
-                  i + 1 === step ? "text-[hsl(var(--foreground))] font-semibold" : "text-[hsl(var(--muted-foreground))]"
+                  i + 1 === step ? "text-[var(--foreground)] font-semibold" : "text-[var(--muted-foreground)]"
                 }`}>
                   {label}
                 </span>
@@ -245,36 +245,36 @@ export default function VendorRegisterPage() {
             <form onSubmit={accountForm.handleSubmit(onAccountSubmit)} className="space-y-4 animate-in fade-in slide-in-from-right-4 duration-300">
               {/* Similar fields as individual registration */}
               <div>
-                <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Full Name</label>
-                <input {...accountForm.register("name")} className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition" />
+                <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Full Name</label>
+                <input {...accountForm.register("name")} className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition" />
                 {accountForm.formState.errors.name && <p className="text-xs text-red-500 mt-1">{accountForm.formState.errors.name.message}</p>}
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Email Address</label>
-                <input type="email" {...accountForm.register("email")} className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition" />
+                <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Email Address</label>
+                <input type="email" {...accountForm.register("email")} className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition" />
                 {accountForm.formState.errors.email && <p className="text-xs text-red-500 mt-1">{accountForm.formState.errors.email.message}</p>}
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Phone Number</label>
-                <input {...accountForm.register("phone")} className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition" />
+                <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Phone Number</label>
+                <input {...accountForm.register("phone")} className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition" />
                 {accountForm.formState.errors.phone && <p className="text-xs text-red-500 mt-1">{accountForm.formState.errors.phone.message}</p>}
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Password</label>
-                  <input type="password" {...accountForm.register("password")} className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition" />
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Password</label>
+                  <input type="password" {...accountForm.register("password")} className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Confirm</label>
-                  <input type="password" {...accountForm.register("confirmPassword")} className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition" />
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Confirm</label>
+                  <input type="password" {...accountForm.register("confirmPassword")} className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition" />
                 </div>
               </div>
 
               <div className="pt-4 flex justify-end">
-                <button type="submit" className="flex items-center px-6 py-2.5 bg-[hsl(var(--color-primary))] text-white rounded-lg font-medium hover:opacity-90 transition-opacity">
+                <button type="submit" className="flex items-center px-6 py-2.5 bg-[var(--color-primary)] text-white rounded-lg font-medium hover:opacity-90 transition-opacity">
                   Continue <ChevronRight className="ml-2 w-4 h-4" />
                 </button>
               </div>
@@ -286,61 +286,61 @@ export default function VendorRegisterPage() {
             <form onSubmit={businessForm.handleSubmit(onBusinessSubmit)} className="space-y-4 animate-in fade-in slide-in-from-right-4 duration-300">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="sm:col-span-2">
-                  <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Business Name</label>
-                  <input {...businessForm.register("businessName")} className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition" />
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Business Name</label>
+                  <input {...businessForm.register("businessName")} className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition" />
                   {businessForm.formState.errors.businessName && <p className="text-xs text-red-500 mt-1">{businessForm.formState.errors.businessName.message}</p>}
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Business Type</label>
-                  <select {...businessForm.register("businessType")} className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition bg-transparent">
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Business Type</label>
+                  <select {...businessForm.register("businessType")} className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition bg-transparent">
                     <option value="">Select type...</option>
                     {BUSINESS_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">State</label>
-                  <select {...businessForm.register("state")} className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition bg-transparent">
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">State</label>
+                  <select {...businessForm.register("state")} className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition bg-transparent">
                     <option value="">Select state...</option>
                     {NIGERIAN_STATES.map(s => <option key={s.slug} value={s.slug}>{s.name}</option>)}
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">City</label>
-                  <input {...businessForm.register("city")} className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition" />
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">City</label>
+                  <input {...businessForm.register("city")} className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition" />
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Primary Market</label>
-                  <select {...businessForm.register("marketId")} disabled={!selectedState || loadingMarkets} className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition bg-transparent disabled:opacity-50">
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Primary Market</label>
+                  <select {...businessForm.register("marketId")} disabled={!selectedState || loadingMarkets} className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition bg-transparent disabled:opacity-50">
                     <option value="">{loadingMarkets ? "Loading..." : "Select market..."}</option>
                     {markets.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
                   </select>
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Address</label>
-                  <textarea {...businessForm.register("streetAddress")} rows={2} className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition resize-none" />
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Address</label>
+                  <textarea {...businessForm.register("streetAddress")} rows={2} className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition resize-none" />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Website (Optional)</label>
-                  <input {...businessForm.register("website")} placeholder="https://" className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition" />
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Website (Optional)</label>
+                  <input {...businessForm.register("website")} placeholder="https://" className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition" />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">WhatsApp (Optional)</label>
-                  <input {...businessForm.register("whatsapp")} className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition" />
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">WhatsApp (Optional)</label>
+                  <input {...businessForm.register("whatsapp")} className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition" />
                 </div>
               </div>
 
               <div className="pt-4 flex justify-between">
-                <button type="button" onClick={() => setStep(1)} className="flex items-center px-4 py-2 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted))] rounded-lg font-medium border border-[hsl(var(--border))]">
+                <button type="button" onClick={() => setStep(1)} className="flex items-center px-4 py-2 text-[var(--foreground)] hover:bg-[var(--muted)] rounded-lg font-medium border border-[var(--border)]">
                   <ChevronLeft className="mr-2 w-4 h-4" /> Back
                 </button>
-                <button type="submit" className="flex items-center px-6 py-2 bg-[hsl(var(--color-primary))] text-white rounded-lg font-medium hover:opacity-90">
+                <button type="submit" className="flex items-center px-6 py-2 bg-[var(--color-primary)] text-white rounded-lg font-medium hover:opacity-90">
                   Continue <ChevronRight className="ml-2 w-4 h-4" />
                 </button>
               </div>
@@ -351,31 +351,31 @@ export default function VendorRegisterPage() {
           {step === 3 && (
             <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
               <div className="text-center space-y-2 mb-6">
-                <div className="mx-auto w-12 h-12 bg-[hsl(var(--color-secondary))/0.1] text-[hsl(var(--color-secondary))] rounded-full flex items-center justify-center">
+                <div className="mx-auto w-12 h-12 bg-[color-mix(in_srgb,var(--color-secondary),transparent_90%)] text-[var(--color-secondary)] rounded-full flex items-center justify-center">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-display font-semibold">Verify Your Business (Optional but Recommended)</h3>
-                <p className="text-sm text-[hsl(var(--muted-foreground))]">Verified businesses get the CAC Verified badge and 3x more buyer trust.</p>
+                <p className="text-sm text-[var(--muted-foreground)]">Verified businesses get the CAC Verified badge and 3x more buyer trust.</p>
               </div>
 
               {!cacVerified ? (
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Company Type</label>
+                    <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Company Type</label>
                     <select 
                       value={cacType} onChange={(e) => setCacType(e.target.value)}
-                      className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition bg-transparent"
+                      className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition bg-transparent"
                     >
                       <option value="">Select type...</option>
                       {CAC_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Registration Number</label>
+                    <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Registration Number</label>
                     <input 
                       value={cacNumber} onChange={(e) => setCacNumber(e.target.value)}
                       placeholder="e.g. RC1234567"
-                      className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition" 
+                      className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition" 
                     />
                   </div>
                   
@@ -383,26 +383,26 @@ export default function VendorRegisterPage() {
 
                   <button 
                     onClick={verifyCac} disabled={isVerifyingCac || !cacType || !cacNumber}
-                    className="w-full py-2.5 bg-[hsl(var(--foreground))] text-[hsl(var(--background))] rounded-lg font-medium hover:opacity-90 disabled:opacity-50 flex justify-center items-center"
+                    className="w-full py-2.5 bg-[var(--foreground)] text-[var(--background)] rounded-lg font-medium hover:opacity-90 disabled:opacity-50 flex justify-center items-center"
                   >
                     {isVerifyingCac ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Verifying...</> : "Verify Business"}
                   </button>
                 </div>
               ) : (
-                <div className="bg-[hsl(var(--color-secondary))/0.1] border border-[hsl(var(--color-secondary))/0.3] rounded-xl p-5">
-                  <div className="flex items-center text-[hsl(var(--color-secondary))] font-semibold mb-3">
+                <div className="bg-[color-mix(in_srgb,var(--color-secondary),transparent_90%)] border border-[color-mix(in_srgb,var(--color-secondary),transparent_70%)] rounded-xl p-5">
+                  <div className="flex items-center text-[var(--color-secondary)] font-semibold mb-3">
                     <CheckCircle2 className="w-5 h-5 mr-2" /> CAC Verification Successful
                   </div>
                   <dl className="text-sm space-y-2">
-                    <div className="flex justify-between"><dt className="text-[hsl(var(--muted-foreground))]">Company Name:</dt><dd className="font-medium text-[hsl(var(--foreground))]">{cacData?.name ?? '-'}</dd></div>
-                    <div className="flex justify-between"><dt className="text-[hsl(var(--muted-foreground))]">Status:</dt><dd className="font-medium text-[hsl(var(--foreground))]">{cacData?.status ?? '-'}</dd></div>
+                    <div className="flex justify-between"><dt className="text-[var(--muted-foreground)]">Company Name:</dt><dd className="font-medium text-[var(--foreground)]">{cacData?.name ?? '-'}</dd></div>
+                    <div className="flex justify-between"><dt className="text-[var(--muted-foreground)]">Status:</dt><dd className="font-medium text-[var(--foreground)]">{cacData?.status ?? '-'}</dd></div>
                   </dl>
                 </div>
               )}
 
               <div className="pt-4 flex justify-between items-center">
-                <button onClick={() => setStep(2)} className="text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]">Back</button>
-                <button onClick={() => setStep(4)} className="text-[hsl(var(--color-primary))] font-medium hover:underline underline-offset-4">
+                <button onClick={() => setStep(2)} className="text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)]">Back</button>
+                <button onClick={() => setStep(4)} className="text-[var(--color-primary)] font-medium hover:underline underline-offset-4">
                   {cacVerified ? "Continue" : "Continue without verification"} <ChevronRight className="inline w-4 h-4" />
                 </button>
               </div>
@@ -413,33 +413,33 @@ export default function VendorRegisterPage() {
           {step === 4 && (
             <div className="animate-in fade-in slide-in-from-right-4 duration-300">
               <FaceCapture onCapture={handleFaceCapture} />
-              <div className="pt-4"><button onClick={() => setStep(3)} className="text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]">Back</button></div>
+              <div className="pt-4"><button onClick={() => setStep(3)} className="text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)]">Back</button></div>
             </div>
           )}
 
           {/* STEP 5: Review & Submit */}
           {step === 5 && (
             <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-              <div className="bg-[hsl(var(--muted))] rounded-xl p-5 border border-[hsl(var(--border))]">
-                <h3 className="font-display font-semibold text-lg mb-4 border-b border-[hsl(var(--border))] pb-2">Business Summary</h3>
+              <div className="bg-[var(--muted)] rounded-xl p-5 border border-[var(--border)]">
+                <h3 className="font-display font-semibold text-lg mb-4 border-b border-[var(--border)] pb-2">Business Summary</h3>
                 <dl className="grid grid-cols-2 gap-y-3 text-sm">
-                  <div><dt className="text-[hsl(var(--muted-foreground))]">Rep Name</dt><dd>{accountForm.getValues("name")}</dd></div>
-                  <div><dt className="text-[hsl(var(--muted-foreground))]">Business</dt><dd className="font-medium">{businessForm.getValues("businessName")}</dd></div>
-                  <div><dt className="text-[hsl(var(--muted-foreground))]">Type</dt><dd>{businessForm.getValues("businessType")}</dd></div>
-                  <div><dt className="text-[hsl(var(--muted-foreground))]">CAC Status</dt><dd className={cacVerified ? "text-[hsl(var(--color-secondary))] font-semibold" : "text-[hsl(var(--muted-foreground))]"}>{cacVerified ? "Verified" : "Unverified"}</dd></div>
+                  <div><dt className="text-[var(--muted-foreground)]">Rep Name</dt><dd>{accountForm.getValues("name")}</dd></div>
+                  <div><dt className="text-[var(--muted-foreground)]">Business</dt><dd className="font-medium">{businessForm.getValues("businessName")}</dd></div>
+                  <div><dt className="text-[var(--muted-foreground)]">Type</dt><dd>{businessForm.getValues("businessType")}</dd></div>
+                  <div><dt className="text-[var(--muted-foreground)]">CAC Status</dt><dd className={cacVerified ? "text-[var(--color-secondary)] font-semibold" : "text-[var(--muted-foreground)]"}>{cacVerified ? "Verified" : "Unverified"}</dd></div>
                 </dl>
               </div>
 
               {error && <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg border border-red-200">{error}</div>}
 
               <div className="flex items-start">
-                <input id="terms" type="checkbox" checked={agreedToTerms} onChange={(e) => setAgreedToTerms(e.target.checked)} className="mt-1 w-4 h-4 rounded border-[hsl(var(--border))] text-[hsl(var(--color-primary))] focus:ring-[hsl(var(--color-primary))]" />
+                <input id="terms" type="checkbox" checked={agreedToTerms} onChange={(e) => setAgreedToTerms(e.target.checked)} className="mt-1 w-4 h-4 rounded border-[var(--border)] text-[var(--color-primary)] focus:ring-[var(--color-primary)]" />
                 <label htmlFor="terms" className="ml-3 text-sm font-medium cursor-pointer">I agree to the Terms of Service and Privacy Policy</label>
               </div>
 
               <div className="pt-4 flex justify-between">
-                <button onClick={() => setStep(4)} disabled={isSubmitting} className="px-4 py-2 border border-[hsl(var(--border))] rounded-lg hover:bg-[hsl(var(--muted))]">Back</button>
-                <button onClick={finalSubmit} disabled={isSubmitting || !agreedToTerms} className="px-8 py-2.5 bg-[hsl(var(--color-secondary))] text-white rounded-lg font-medium hover:opacity-90 disabled:opacity-50">
+                <button onClick={() => setStep(4)} disabled={isSubmitting} className="px-4 py-2 border border-[var(--border)] rounded-lg hover:bg-[var(--muted)]">Back</button>
+                <button onClick={finalSubmit} disabled={isSubmitting || !agreedToTerms} className="px-8 py-2.5 bg-[var(--color-secondary)] text-white rounded-lg font-medium hover:opacity-90 disabled:opacity-50">
                   {isSubmitting ? <><Loader2 className="inline w-4 h-4 mr-2 animate-spin" /> Submitting...</> : "Complete Registration"}
                 </button>
               </div>

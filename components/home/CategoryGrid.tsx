@@ -34,7 +34,7 @@ export default function CategoryGrid({ categories }: CategoryGridProps) {
             <div className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl mb-3 ${colorClass} group-hover:scale-110 transition-transform duration-300`}>
               {category.icon || "📦"}
             </div>
-            <span className="text-sm font-medium text-center text-gray-800 group-hover:text-[hsl(var(--color-primary))] transition-colors">
+            <span className="text-sm font-medium text-center text-gray-800 group-hover:text-[var(--color-primary)] transition-colors">
               {category.name}
             </span>
           </Link>

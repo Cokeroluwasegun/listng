@@ -51,8 +51,8 @@ export default async function StateMarketsPage(props: { params: Promise<{ state:
   });
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--muted))] pb-12">
-      <div className="bg-[hsl(var(--color-primary))] text-white py-12 px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-[var(--muted)] pb-12">
+      <div className="bg-[var(--color-primary)] text-white py-12 px-4 relative overflow-hidden">
         <div className="max-w-6xl mx-auto relative z-10">
           <Link href="/markets" className="inline-flex items-center text-orange-100 hover:text-white text-sm mb-6 transition-colors">
             &larr; Back to all states
@@ -70,7 +70,7 @@ export default async function StateMarketsPage(props: { params: Promise<{ state:
             <Link key={market.id} href={`/markets/${state.slug}/${market.slug}`} className="block group">
               <div className="card bg-white p-5 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg h-full flex flex-col">
                 <div className="mb-3">
-                  <h2 className="font-display font-bold text-lg text-gray-900 group-hover:text-[hsl(var(--color-primary))] transition-colors line-clamp-1">
+                  <h2 className="font-display font-bold text-lg text-gray-900 group-hover:text-[var(--color-primary)] transition-colors line-clamp-1">
                     {market.name}
                   </h2>
                   <div className="flex items-center text-gray-500 text-xs mt-1">
@@ -81,7 +81,7 @@ export default async function StateMarketsPage(props: { params: Promise<{ state:
                 
                 {market.specialty && (
                   <div className="mb-4">
-                    <span className="badge bg-green-50 text-[hsl(var(--color-secondary))] px-2 py-1 rounded-md text-xs font-medium inline-flex items-center">
+                    <span className="badge bg-green-50 text-[var(--color-secondary)] px-2 py-1 rounded-md text-xs font-medium inline-flex items-center">
                       <Tag className="w-3 h-3 mr-1" />
                       {market.specialty}
                     </span>

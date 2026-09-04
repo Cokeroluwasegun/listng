@@ -67,7 +67,7 @@ const TOP_MARKETS = [
 
 export function Footer() {
   return (
-    <footer className="bg-[hsl(220,15%,9%)] text-[hsl(var(--muted-foreground))]">
+    <footer className="bg-[hsl(220,15%,9%)] text-[var(--muted-foreground)]">
       {/* Top Markets Strip */}
       <div className="border-b border-white/10 bg-[hsl(220,15%,7%)]">
         <div className="section py-4">
@@ -79,7 +79,7 @@ export function Footer() {
               <Link
                 key={market.href}
                 href={market.href}
-                className="rounded-full border border-white/10 px-2.5 py-1 text-xs text-white/50 transition-colors hover:border-[hsl(var(--color-primary)/0.5)] hover:text-[hsl(var(--color-primary))]"
+                className="rounded-full border border-white/10 px-2.5 py-1 text-xs text-white/50 transition-colors hover:border-[color-mix(in_srgb,var(--color-primary),transparent 50%)] hover:text-[var(--color-primary)]"
               >
                 {market.label}
               </Link>
@@ -94,11 +94,11 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[hsl(var(--color-primary))]">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--color-primary)]">
                 <span className="text-lg font-black text-white">L</span>
               </div>
               <span className="font-display text-xl font-bold text-white">
-                List<span className="text-[hsl(var(--color-primary))]">NG</span>
+                List<span className="text-[var(--color-primary)]">NG</span>
               </span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-white/50">
@@ -111,7 +111,7 @@ export function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-white/40 transition-colors hover:border-[hsl(var(--color-primary))] hover:text-[hsl(var(--color-primary))]"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-white/40 transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
                     <path d={social.path} />

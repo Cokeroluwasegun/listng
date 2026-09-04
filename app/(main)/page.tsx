@@ -98,20 +98,20 @@ export default async function HomePage() {
       </section>
 
       {/* ─── Market Picker ─── */}
-      <section className="border-b border-[hsl(var(--border))] bg-white">
+      <section className="border-b border-[var(--border)] bg-white">
         <div className="section py-8">
           <div className="mb-5 flex items-center justify-between">
             <div>
-              <h2 className="font-display text-xl font-bold text-[hsl(var(--foreground))]">
+              <h2 className="font-display text-xl font-bold text-[var(--foreground)]">
                 Browse by Market
               </h2>
-              <p className="text-sm text-[hsl(var(--muted-foreground))]">
+              <p className="text-sm text-[var(--muted-foreground)]">
                 Find vendors near you by selecting a market
               </p>
             </div>
             <Link
               href="/markets"
-              className="text-sm font-semibold text-[hsl(var(--color-primary))] hover:underline"
+              className="text-sm font-semibold text-[var(--color-primary)] hover:underline"
             >
               See all markets →
             </Link>
@@ -121,11 +121,11 @@ export default async function HomePage() {
       </section>
 
       {/* ─── Categories ─── */}
-      <section className="bg-[hsl(var(--muted)/0.5)] py-10">
+      <section className="bg-[color-mix(in_srgb,var(--muted),transparent 50%)] py-10">
         <div className="section">
           <div className="mb-6 flex items-center justify-between">
             <h2 className="font-display text-xl font-bold">Browse by Category</h2>
-            <Link href="/categories" className="text-sm font-semibold text-[hsl(var(--color-primary))] hover:underline">
+            <Link href="/categories" className="text-sm font-semibold text-[var(--color-primary)] hover:underline">
               All categories →
             </Link>
           </div>
@@ -149,14 +149,14 @@ export default async function HomePage() {
       )}
 
       {/* ─── Recent Listings ─── */}
-      <section className="bg-[hsl(var(--muted)/0.3)] py-10">
+      <section className="bg-[color-mix(in_srgb,var(--muted),transparent 30%)] py-10">
         <div className="section">
           <div className="mb-6 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-[hsl(var(--color-primary))]" />
+              <TrendingUp className="h-5 w-5 text-[var(--color-primary)]" />
               <h2 className="font-display text-xl font-bold">Recent Listings</h2>
             </div>
-            <Link href="/search" className="text-sm font-semibold text-[hsl(var(--color-primary))] hover:underline">
+            <Link href="/search" className="text-sm font-semibold text-[var(--color-primary)] hover:underline">
               View all →
             </Link>
           </div>
@@ -167,7 +167,7 @@ export default async function HomePage() {
       </section>
 
       {/* ─── Seller CTA ─── */}
-      <section className="bg-gradient-to-r from-[hsl(var(--color-secondary))] to-[hsl(142,65%,22%)] py-16">
+      <section className="bg-gradient-to-r from-[var(--color-secondary)] to-[hsl(142,65%,22%)] py-16">
         <div className="section text-center">
           <h2 className="font-display text-3xl font-extrabold text-white md:text-4xl">
             Ready to Start Selling?
@@ -178,7 +178,7 @@ export default async function HomePage() {
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/register?type=individual"
-              className="rounded-xl bg-white px-8 py-3.5 font-semibold text-[hsl(var(--color-secondary))] shadow-lg transition-transform hover:scale-105"
+              className="rounded-xl bg-white px-8 py-3.5 font-semibold text-[var(--color-secondary)] shadow-lg transition-transform hover:scale-105"
             >
               Register as Individual
             </Link>

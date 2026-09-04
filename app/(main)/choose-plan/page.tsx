@@ -26,13 +26,13 @@ export default async function ChoosePlanPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--muted)/0.3)] py-16">
+    <div className="min-h-screen bg-[color-mix(in_srgb,var(--muted),transparent 30%)] py-16">
       <div className="section">
         <div className="mb-12 text-center">
-          <h1 className="font-display text-4xl font-extrabold text-[hsl(var(--foreground))]">
+          <h1 className="font-display text-4xl font-extrabold text-[var(--foreground)]">
             Choose Your Seller Plan
           </h1>
-          <p className="mt-3 text-lg text-[hsl(var(--muted-foreground))]">
+          <p className="mt-3 text-lg text-[var(--muted-foreground)]">
             Start free, scale as you grow. All plans include access to all Nigerian markets.
           </p>
           {existingSub && (
@@ -48,7 +48,7 @@ export default async function ChoosePlanPage() {
           price: p.price.toString(),
         }))} />
 
-        <p className="mt-10 text-center text-sm text-[hsl(var(--muted-foreground))]">
+        <p className="mt-10 text-center text-sm text-[var(--muted-foreground)]">
           Payments powered by <strong>Paystack</strong> · Secure card, bank transfer & USSD
         </p>
       </div>

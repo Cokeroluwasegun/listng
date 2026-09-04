@@ -84,22 +84,22 @@ export default async function ListingDetailPage(props: { params: Promise<{ id: s
     : [];
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--muted))] pb-16 pt-6">
+    <div className="min-h-screen bg-[var(--muted)] pb-16 pt-6">
       <div className="max-w-6xl mx-auto px-4">
         {/* BREADCRUMB */}
         <nav className="text-sm text-gray-500 mb-6 flex items-center space-x-2">
-          <Link href="/" className="hover:text-[hsl(var(--color-primary))]">Home</Link>
+          <Link href="/" className="hover:text-[var(--color-primary)]">Home</Link>
           <span>/</span>
           {listing.category?.parent && (
             <>
-              <Link href={`/category/${listing.category.parent.slug}`} className="hover:text-[hsl(var(--color-primary))]">
+              <Link href={`/category/${listing.category.parent.slug}`} className="hover:text-[var(--color-primary)]">
                 {listing.category.parent.name}
               </Link>
               <span>/</span>
             </>
           )}
           {listing.category && (
-            <Link href={`/category/${listing.category.slug}`} className="hover:text-[hsl(var(--color-primary))]">
+            <Link href={`/category/${listing.category.slug}`} className="hover:text-[var(--color-primary)]">
               {listing.category.name}
             </Link>
           )}
@@ -115,7 +115,7 @@ export default async function ListingDetailPage(props: { params: Promise<{ id: s
               {listing.images && listing.images.length > 1 && (
                 <div className="flex gap-2 overflow-x-auto pb-2">
                   {listing.images.map((img, i) => (
-                    <button key={i} className="relative w-20 h-20 rounded-lg overflow-hidden border-2 border-transparent hover:border-[hsl(var(--color-primary))] shrink-0">
+                    <button key={i} className="relative w-20 h-20 rounded-lg overflow-hidden border-2 border-transparent hover:border-[var(--color-primary)] shrink-0">
                       <Image src={img} alt="thumbnail" fill className="object-cover" />
                     </button>
                   ))}
@@ -204,9 +204,9 @@ export default async function ListingDetailPage(props: { params: Promise<{ id: s
           <div className="lg:w-[40%]">
             <div className="sticky top-24 space-y-6">
               {/* PRICE CARD */}
-              <div className="card bg-white rounded-2xl p-6 shadow-sm border border-[hsl(var(--color-primary))]/20">
+              <div className="card bg-white rounded-2xl p-6 shadow-sm border border-[var(--color-primary)]/20">
                 <div className="mb-6">
-                  <div className="text-4xl font-display font-bold text-[hsl(var(--color-primary))]">
+                  <div className="text-4xl font-display font-bold text-[var(--color-primary)]">
                     {formatPrice(listing.price.toNumber())}
                   </div>
                   {listing.isNegotiable && (
@@ -215,11 +215,11 @@ export default async function ListingDetailPage(props: { params: Promise<{ id: s
                 </div>
 
                 <div className="space-y-3">
-                  <Link href={`/messages?listingId=${listing.id}`} className="flex items-center justify-center w-full bg-[hsl(var(--color-primary))] text-white py-3.5 rounded-xl font-bold hover:bg-orange-600 transition-colors">
+                  <Link href={`/messages?listingId=${listing.id}`} className="flex items-center justify-center w-full bg-[var(--color-primary)] text-white py-3.5 rounded-xl font-bold hover:bg-orange-600 transition-colors">
                     <MessageCircle className="w-5 h-5 mr-2" /> Send Message
                   </Link>
                   {listing.seller.phone && (
-                    <a href={`tel:${listing.seller.phone}`} className="flex items-center justify-center w-full bg-white text-[hsl(var(--color-primary))] border-2 border-[hsl(var(--color-primary))] py-3.5 rounded-xl font-bold hover:bg-orange-50 transition-colors">
+                    <a href={`tel:${listing.seller.phone}`} className="flex items-center justify-center w-full bg-white text-[var(--color-primary)] border-2 border-[var(--color-primary)] py-3.5 rounded-xl font-bold hover:bg-orange-50 transition-colors">
                       <PhoneCall className="w-5 h-5 mr-2" /> Show Contact
                     </a>
                   )}
@@ -258,7 +258,7 @@ export default async function ListingDetailPage(props: { params: Promise<{ id: s
                         </span>
                       )}
                       {listing.seller.vendorProfile?.cacVerification?.isVerified && (
-                        <span className="inline-flex items-center text-[10px] bg-green-50 text-[hsl(var(--color-secondary))] px-1.5 py-0.5 rounded-full font-bold">
+                        <span className="inline-flex items-center text-[10px] bg-green-50 text-[var(--color-secondary)] px-1.5 py-0.5 rounded-full font-bold">
                           <ShieldCheck className="w-3 h-3 mr-0.5" /> CAC Verified
                         </span>
                       )}

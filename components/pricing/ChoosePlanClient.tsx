@@ -70,13 +70,13 @@ export function ChoosePlanClient({ packages }: ChoosePlanClientProps) {
           key={pkg.id}
           className={`relative flex flex-col rounded-2xl border-2 bg-white p-6 shadow-sm transition-shadow hover:shadow-md ${
             pkg.isPopular
-              ? "border-[hsl(var(--color-primary))]"
-              : "border-[hsl(var(--border))]"
+              ? "border-[var(--color-primary)]"
+              : "border-[var(--border)]"
           }`}
         >
           {pkg.isPopular && (
             <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-              <span className="flex items-center gap-1 rounded-full bg-[hsl(var(--color-primary))] px-3 py-1 text-xs font-bold text-white shadow">
+              <span className="flex items-center gap-1 rounded-full bg-[var(--color-primary)] px-3 py-1 text-xs font-bold text-white shadow">
                 <Star className="h-3 w-3 fill-current" /> Most Popular
               </span>
             </div>
@@ -85,13 +85,13 @@ export function ChoosePlanClient({ packages }: ChoosePlanClientProps) {
           <div className="mb-4">
             <h3 className="font-display text-lg font-bold">{pkg.name}</h3>
             {pkg.tagline && (
-              <p className="mt-0.5 text-sm text-[hsl(var(--muted-foreground))]">{pkg.tagline}</p>
+              <p className="mt-0.5 text-sm text-[var(--muted-foreground)]">{pkg.tagline}</p>
             )}
           </div>
 
           <div className="mb-6">
             {pkg.isFree ? (
-              <div className="font-display text-3xl font-extrabold text-[hsl(var(--color-secondary))]">
+              <div className="font-display text-3xl font-extrabold text-[var(--color-secondary)]">
                 Free
               </div>
             ) : (
@@ -99,7 +99,7 @@ export function ChoosePlanClient({ packages }: ChoosePlanClientProps) {
                 <span className="font-display text-3xl font-extrabold">
                   {formatPrice(parseFloat(pkg.price))}
                 </span>
-                <span className="text-sm text-[hsl(var(--muted-foreground))]">/month</span>
+                <span className="text-sm text-[var(--muted-foreground)]">/month</span>
               </div>
             )}
             {pkg.badge && (
@@ -116,7 +116,7 @@ export function ChoosePlanClient({ packages }: ChoosePlanClientProps) {
           <ul className="mb-6 flex-1 space-y-2.5">
             {pkg.features.map((feature) => (
               <li key={feature} className="flex items-start gap-2 text-sm">
-                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[hsl(var(--color-secondary))]" />
+                <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-secondary)]" />
                 <span>{feature}</span>
               </li>
             ))}
@@ -127,10 +127,10 @@ export function ChoosePlanClient({ packages }: ChoosePlanClientProps) {
             disabled={!!loading}
             className={`w-full rounded-xl py-3 text-sm font-semibold transition-all ${
               pkg.isPopular
-                ? "bg-[hsl(var(--color-primary))] text-white hover:opacity-90 shadow-lg shadow-[hsl(var(--color-primary)/0.25)]"
+                ? "bg-[var(--color-primary)] text-white hover:opacity-90 shadow-lg shadow-[color-mix(in_srgb,var(--color-primary),transparent 25%)]"
                 : pkg.isFree
-                ? "bg-[hsl(var(--color-secondary))] text-white hover:opacity-90"
-                : "border-2 border-[hsl(var(--color-primary))] text-[hsl(var(--color-primary))] hover:bg-[hsl(var(--color-primary)/0.05)]"
+                ? "bg-[var(--color-secondary)] text-white hover:opacity-90"
+                : "border-2 border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[color-mix(in_srgb,var(--color-primary),transparent 5%)]"
             } disabled:opacity-50`}
           >
             {loading === pkg.id ? (

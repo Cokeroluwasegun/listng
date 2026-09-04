@@ -106,16 +106,16 @@ export function FaceCapture({ onCapture, onSkip }: FaceCaptureProps) {
   };
 
   const ringColor = captured
-    ? "border-[hsl(var(--color-secondary))]"
+    ? "border-[var(--color-secondary)]"
     : faceDetected
-    ? "border-[hsl(var(--color-secondary))] animate-pulse"
+    ? "border-[var(--color-secondary)] animate-pulse"
     : "border-amber-400";
 
   return (
     <div className="flex flex-col items-center justify-center p-6 space-y-6">
       <div className="text-center space-y-2">
-        <h3 className="text-xl font-display font-semibold text-[hsl(var(--foreground))]">Face Verification</h3>
-        <p className="text-sm text-[hsl(var(--muted-foreground))]">
+        <h3 className="text-xl font-display font-semibold text-[var(--foreground)]">Face Verification</h3>
+        <p className="text-sm text-[var(--muted-foreground)]">
           {error
             ? "Camera error"
             : captured
@@ -131,26 +131,26 @@ export function FaceCapture({ onCapture, onSkip }: FaceCaptureProps) {
         ></div>
 
         {/* Video or Status Indicator */}
-        <div className="w-full h-full rounded-full overflow-hidden bg-[hsl(var(--muted))] relative flex items-center justify-center shadow-inner">
+        <div className="w-full h-full rounded-full overflow-hidden bg-[var(--muted)] relative flex items-center justify-center shadow-inner">
           {error ? (
             <div className="flex flex-col items-center text-red-500">
               <AlertCircle className="w-12 h-12 mb-2" />
               <span className="text-sm px-4 text-center">{error}</span>
             </div>
           ) : !modelsLoaded ? (
-            <div className="flex flex-col items-center text-[hsl(var(--color-primary))]">
+            <div className="flex flex-col items-center text-[var(--color-primary)]">
               <Loader2 className="w-10 h-10 animate-spin mb-2" />
               <span className="text-sm font-medium">Loading models...</span>
             </div>
           ) : captured ? (
-            <div className="flex flex-col items-center text-[hsl(var(--color-secondary))] bg-[hsl(var(--color-secondary))/0.1] w-full h-full justify-center">
+            <div className="flex flex-col items-center text-[var(--color-secondary)] bg-[color-mix(in_srgb,var(--color-secondary),transparent_90%)] w-full h-full justify-center">
               <CheckCircle2 className="w-20 h-20 mb-4" />
               <span className="font-semibold text-lg">Captured</span>
             </div>
           ) : !streamActive ? (
             <button
               onClick={startWebcam}
-              className="flex flex-col items-center text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--color-primary))] transition-colors"
+              className="flex flex-col items-center text-[var(--muted-foreground)] hover:text-[var(--color-primary)] transition-colors"
             >
               <Camera className="w-12 h-12 mb-2" />
               <span className="font-medium">Start Camera</span>
@@ -173,14 +173,14 @@ export function FaceCapture({ onCapture, onSkip }: FaceCaptureProps) {
           {streamActive && !captured && (
             <p
               className={`text-sm font-medium transition-colors ${
-                faceDetected ? "text-[hsl(var(--color-secondary))]" : "text-amber-500"
+                faceDetected ? "text-[var(--color-secondary)]" : "text-amber-500"
               }`}
             >
               {faceDetected ? `✓ Face Detected! (${confidence}%)` : "Position your face in the circle"}
             </p>
           )}
           {captured && (
-            <p className="text-sm font-medium text-[hsl(var(--color-secondary))]">
+            <p className="text-sm font-medium text-[var(--color-secondary)]">
               Face captured successfully
             </p>
           )}
@@ -192,8 +192,8 @@ export function FaceCapture({ onCapture, onSkip }: FaceCaptureProps) {
             disabled={!faceDetected || !streamActive}
             className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-200 ${
               faceDetected && streamActive
-                ? "bg-[hsl(var(--color-primary))] text-white hover:opacity-90 shadow-md"
-                : "bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))] cursor-not-allowed"
+                ? "bg-[var(--color-primary)] text-white hover:opacity-90 shadow-md"
+                : "bg-[var(--muted)] text-[var(--muted-foreground)] cursor-not-allowed"
             }`}
           >
             Capture Face
@@ -203,7 +203,7 @@ export function FaceCapture({ onCapture, onSkip }: FaceCaptureProps) {
         {onSkip && !captured && (
           <button
             onClick={onSkip}
-            className="text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] underline underline-offset-4"
+            className="text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] underline underline-offset-4"
           >
             Skip for now
           </button>

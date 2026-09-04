@@ -19,7 +19,7 @@ export function MobileBottomNav() {
   const { data: session } = useSession();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-[hsl(var(--border))] bg-white/95 backdrop-blur-md md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-[var(--border)] bg-white/95 backdrop-blur-md md:hidden">
       <div className="flex items-center">
         {NAV_ITEMS.map((item) => {
           const isActive = pathname === item.href ||
@@ -36,10 +36,10 @@ export function MobileBottomNav() {
                 href={href}
                 className="flex flex-1 flex-col items-center pb-safe"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[hsl(var(--color-primary))] shadow-lg shadow-[hsl(var(--color-primary)/0.35)] -translate-y-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-primary)] shadow-lg shadow-[color-mix(in_srgb,var(--color-primary),transparent 35%)] -translate-y-3">
                   <item.icon className="h-5 w-5 text-white" />
                 </div>
-                <span className="text-[10px] font-medium text-[hsl(var(--muted-foreground))]">
+                <span className="text-[10px] font-medium text-[var(--muted-foreground)]">
                   {item.label}
                 </span>
               </Link>
@@ -53,8 +53,8 @@ export function MobileBottomNav() {
               className={cn(
                 "flex flex-1 flex-col items-center gap-1 py-2.5 transition-colors",
                 isActive
-                  ? "text-[hsl(var(--color-primary))]"
-                  : "text-[hsl(var(--muted-foreground))]"
+                  ? "text-[var(--color-primary)]"
+                  : "text-[var(--muted-foreground)]"
               )}
             >
               <item.icon className={cn("h-5 w-5", isActive && "fill-current")} strokeWidth={isActive ? 2.5 : 2} />

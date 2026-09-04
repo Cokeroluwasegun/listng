@@ -15,7 +15,7 @@ export default async function PricingPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--muted))] py-16">
+    <div className="min-h-screen bg-[var(--muted)] py-16">
       <div className="max-w-7xl mx-auto px-4">
         
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -36,12 +36,12 @@ export default async function PricingPage() {
                 className={cn(
                   "bg-white rounded-3xl p-8 relative flex flex-col transition-all duration-300",
                   pkg.isPopular 
-                    ? "border-2 border-[hsl(var(--color-primary))] shadow-xl scale-100 lg:scale-105 z-10" 
+                    ? "border-2 border-[var(--color-primary)] shadow-xl scale-100 lg:scale-105 z-10" 
                     : "border border-gray-200 shadow-sm hover:shadow-md"
                 )}
               >
                 {pkg.isPopular && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[hsl(var(--color-primary))] text-white text-xs font-bold uppercase tracking-widest py-1.5 px-4 rounded-full">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--color-primary)] text-white text-xs font-bold uppercase tracking-widest py-1.5 px-4 rounded-full">
                     Most Popular
                   </div>
                 )}
@@ -64,13 +64,13 @@ export default async function PricingPage() {
                 <ul className="space-y-4 mb-8 flex-1">
                   {(pkg.features as string[])?.map((feature, idx) => (
                     <li key={idx} className="flex items-start">
-                      <Check className="w-5 h-5 text-[hsl(var(--color-secondary))] shrink-0 mr-3" />
+                      <Check className="w-5 h-5 text-[var(--color-secondary)] shrink-0 mr-3" />
                       <span className="text-gray-600 text-sm leading-tight">{feature}</span>
                     </li>
                   ))}
                   {pkg.heroSpotsPerMonth > 0 && (
                     <li className="flex items-start">
-                      <Check className="w-5 h-5 text-[hsl(var(--color-primary))] shrink-0 mr-3" />
+                      <Check className="w-5 h-5 text-[var(--color-primary)] shrink-0 mr-3" />
                       <span className="text-gray-900 font-medium text-sm leading-tight">
                         {pkg.heroSpotsPerMonth} Sponsored Spots per month
                       </span>
@@ -83,8 +83,8 @@ export default async function PricingPage() {
                   className={cn(
                     "w-full block text-center py-4 rounded-xl font-bold transition-colors",
                     pkg.isPopular
-                      ? "bg-[hsl(var(--color-primary))] text-white hover:bg-orange-600 shadow-md"
-                      : "bg-orange-50 text-[hsl(var(--color-primary))] hover:bg-orange-100"
+                      ? "bg-[var(--color-primary)] text-white hover:bg-orange-600 shadow-md"
+                      : "bg-orange-50 text-[var(--color-primary)] hover:bg-orange-100"
                   )}
                 >
                   {isFree ? "Get Started" : "Choose Plan"}
@@ -102,7 +102,7 @@ export default async function PricingPage() {
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
               <h4 className="font-bold text-lg text-gray-900 mb-2 flex items-center gap-2">
-                <HelpCircle className="w-5 h-5 text-[hsl(var(--color-primary))]" />
+                <HelpCircle className="w-5 h-5 text-[var(--color-primary)]" />
                 Can I change my plan later?
               </h4>
               <p className="text-gray-600">Yes, you can upgrade or downgrade your plan at any time from your vendor dashboard. If you upgrade, the prorated amount will be applied.</p>
@@ -110,7 +110,7 @@ export default async function PricingPage() {
             
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
               <h4 className="font-bold text-lg text-gray-900 mb-2 flex items-center gap-2">
-                <HelpCircle className="w-5 h-5 text-[hsl(var(--color-primary))]" />
+                <HelpCircle className="w-5 h-5 text-[var(--color-primary)]" />
                 Is VAT included?
               </h4>
               <p className="text-gray-600">No, the prices listed above do not include Value Added Tax (VAT). Applicable VAT will be added at checkout.</p>
@@ -118,7 +118,7 @@ export default async function PricingPage() {
             
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
               <h4 className="font-bold text-lg text-gray-900 mb-2 flex items-center gap-2">
-                <HelpCircle className="w-5 h-5 text-[hsl(var(--color-primary))]" />
+                <HelpCircle className="w-5 h-5 text-[var(--color-primary)]" />
                 How is payment made?
               </h4>
               <p className="text-gray-600">We process all payments securely via Paystack. You can pay using your debit/credit card, direct bank transfer, or USSD.</p>
@@ -126,7 +126,7 @@ export default async function PricingPage() {
             
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
               <h4 className="font-bold text-lg text-gray-900 mb-2 flex items-center gap-2">
-                <HelpCircle className="w-5 h-5 text-[hsl(var(--color-primary))]" />
+                <HelpCircle className="w-5 h-5 text-[var(--color-primary)]" />
                 What is CAC verification?
               </h4>
               <p className="text-gray-600">CAC verification allows us to verify your registered business with the Corporate Affairs Commission of Nigeria. Verified businesses get a special badge and higher trust from buyers.</p>

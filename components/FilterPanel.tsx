@@ -95,7 +95,7 @@ export function FilterPanel({ initialValues }: FilterPanelProps) {
             onChange={(e) => setQ(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && applyFilters()}
             placeholder="Search listings..."
-            className="w-full rounded-lg border border-gray-200 bg-gray-50 py-2.5 pl-9 pr-3 text-sm outline-none transition focus:border-[hsl(var(--color-primary))] focus:ring-2 focus:ring-[hsl(var(--color-primary)/0.2)]"
+            className="w-full rounded-lg border border-gray-200 bg-gray-50 py-2.5 pl-9 pr-3 text-sm outline-none transition focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-primary),transparent 20%)]"
           />
         </div>
       </div>
@@ -108,7 +108,7 @@ export function FilterPanel({ initialValues }: FilterPanelProps) {
         <select
           value={state}
           onChange={(e) => setState(e.target.value)}
-          className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm outline-none transition focus:border-[hsl(var(--color-primary))] focus:ring-2 focus:ring-[hsl(var(--color-primary)/0.2)]"
+          className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm outline-none transition focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-primary),transparent 20%)]"
         >
           <option value="">All States</option>
           {NIGERIAN_STATES.map((s) => (
@@ -125,7 +125,7 @@ export function FilterPanel({ initialValues }: FilterPanelProps) {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm outline-none transition focus:border-[hsl(var(--color-primary))] focus:ring-2 focus:ring-[hsl(var(--color-primary)/0.2)]"
+          className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm outline-none transition focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-primary),transparent 20%)]"
         >
           <option value="">All Categories</option>
           {CATEGORIES.map((c) => (
@@ -142,7 +142,7 @@ export function FilterPanel({ initialValues }: FilterPanelProps) {
         <select
           value={condition}
           onChange={(e) => setCondition(e.target.value)}
-          className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm outline-none transition focus:border-[hsl(var(--color-primary))] focus:ring-2 focus:ring-[hsl(var(--color-primary)/0.2)]"
+          className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm outline-none transition focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-primary),transparent 20%)]"
         >
           <option value="">Any Condition</option>
           {CONDITIONS.map((c) => (
@@ -162,7 +162,7 @@ export function FilterPanel({ initialValues }: FilterPanelProps) {
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
             placeholder="Min"
-            className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm outline-none transition focus:border-[hsl(var(--color-primary))] focus:ring-2 focus:ring-[hsl(var(--color-primary)/0.2)]"
+            className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm outline-none transition focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-primary),transparent 20%)]"
           />
           <span className="text-gray-400">—</span>
           <input
@@ -170,7 +170,7 @@ export function FilterPanel({ initialValues }: FilterPanelProps) {
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
             placeholder="Max"
-            className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm outline-none transition focus:border-[hsl(var(--color-primary))] focus:ring-2 focus:ring-[hsl(var(--color-primary)/0.2)]"
+            className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm outline-none transition focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-primary),transparent 20%)]"
           />
         </div>
       </div>
@@ -179,7 +179,7 @@ export function FilterPanel({ initialValues }: FilterPanelProps) {
       <div className="space-y-2.5 pt-1">
         <button
           onClick={applyFilters}
-          className="w-full rounded-lg bg-[hsl(var(--color-primary))] py-2.5 text-sm font-semibold text-white transition hover:brightness-110"
+          className="w-full rounded-lg bg-[var(--color-primary)] py-2.5 text-sm font-semibold text-white transition hover:brightness-110"
         >
           Apply Filters
         </button>

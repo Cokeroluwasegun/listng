@@ -151,24 +151,24 @@ export default function IndividualRegisterPage() {
   const steps = ["Account", "Location", "Face ID", "Review"];
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--muted))] py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-      <div className="max-w-xl w-full bg-[hsl(var(--background))] rounded-2xl shadow-xl overflow-hidden border border-[hsl(var(--border))]">
+    <div className="min-h-screen bg-[var(--muted)] py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+      <div className="max-w-xl w-full bg-[var(--background)] rounded-2xl shadow-xl overflow-hidden border border-[var(--border)]">
         
         {/* Progress Header */}
-        <div className="bg-[hsl(var(--color-primary))/0.05] p-6 border-b border-[hsl(var(--border))]">
+        <div className="bg-[color-mix(in_srgb,var(--color-primary),transparent_95%)] p-6 border-b border-[var(--border)]">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-display font-bold text-[hsl(var(--foreground))]">
+            <h2 className="text-2xl font-display font-bold text-[var(--foreground)]">
               Seller Registration
             </h2>
-            <span className="text-sm font-medium text-[hsl(var(--color-primary))]">
+            <span className="text-sm font-medium text-[var(--color-primary)]">
               Step {step} of 4
             </span>
           </div>
           
           <div className="flex justify-between relative">
-            <div className="absolute top-1/2 left-0 right-0 h-1 -translate-y-1/2 bg-[hsl(var(--muted))] rounded">
+            <div className="absolute top-1/2 left-0 right-0 h-1 -translate-y-1/2 bg-[var(--muted)] rounded">
               <div 
-                className="h-full bg-[hsl(var(--color-primary))] rounded transition-all duration-300"
+                className="h-full bg-[var(--color-primary)] rounded transition-all duration-300"
                 style={{ width: `${((step - 1) / 3) * 100}%` }}
               />
             </div>
@@ -176,13 +176,13 @@ export default function IndividualRegisterPage() {
               <div key={label} className="relative z-10 flex flex-col items-center">
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
                   i + 1 <= step 
-                    ? "bg-[hsl(var(--color-primary))] text-white" 
-                    : "bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))] border border-[hsl(var(--border))]"
+                    ? "bg-[var(--color-primary)] text-white" 
+                    : "bg-[var(--muted)] text-[var(--muted-foreground)] border border-[var(--border)]"
                 }`}>
                   {i + 1 < step ? <CheckCircle2 className="w-4 h-4" /> : i + 1}
                 </div>
                 <span className={`text-xs mt-1 absolute -bottom-5 w-20 text-center ${
-                  i + 1 === step ? "text-[hsl(var(--foreground))] font-semibold" : "text-[hsl(var(--muted-foreground))]"
+                  i + 1 === step ? "text-[var(--foreground)] font-semibold" : "text-[var(--muted-foreground)]"
                 }`}>
                   {label}
                 </span>
@@ -198,53 +198,53 @@ export default function IndividualRegisterPage() {
           {step === 1 && (
             <form onSubmit={accountForm.handleSubmit(onAccountSubmit)} className="space-y-5 animate-in fade-in slide-in-from-right-4 duration-300">
               <div>
-                <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Full Name</label>
+                <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Full Name</label>
                 <input 
                   {...accountForm.register("name")} 
-                  className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] focus:border-transparent outline-none transition" 
+                  className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition" 
                   placeholder="John Doe" 
                 />
                 {accountForm.formState.errors.name && <p className="mt-1 text-sm text-red-500">{accountForm.formState.errors.name.message}</p>}
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Email Address</label>
+                <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Email Address</label>
                 <input 
                   type="email"
                   {...accountForm.register("email")} 
-                  className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] focus:border-transparent outline-none transition" 
+                  className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition" 
                   placeholder="john@example.com" 
                 />
                 {accountForm.formState.errors.email && <p className="mt-1 text-sm text-red-500">{accountForm.formState.errors.email.message}</p>}
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Phone Number</label>
+                <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Phone Number</label>
                 <input 
                   {...accountForm.register("phone")} 
-                  className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] focus:border-transparent outline-none transition" 
+                  className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition" 
                   placeholder="08012345678" 
                 />
-                <p className="mt-1 text-xs text-[hsl(var(--muted-foreground))]">Nigerian format: 080... or +234...</p>
+                <p className="mt-1 text-xs text-[var(--muted-foreground)]">Nigerian format: 080... or +234...</p>
                 {accountForm.formState.errors.phone && <p className="mt-1 text-sm text-red-500">{accountForm.formState.errors.phone.message}</p>}
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Password</label>
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Password</label>
                   <input 
                     type="password"
                     {...accountForm.register("password")} 
-                    className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] focus:border-transparent outline-none transition" 
+                    className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition" 
                   />
                   {accountForm.formState.errors.password && <p className="mt-1 text-sm text-red-500">{accountForm.formState.errors.password.message}</p>}
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Confirm Password</label>
+                  <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Confirm Password</label>
                   <input 
                     type="password"
                     {...accountForm.register("confirmPassword")} 
-                    className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] focus:border-transparent outline-none transition" 
+                    className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition" 
                   />
                   {accountForm.formState.errors.confirmPassword && <p className="mt-1 text-sm text-red-500">{accountForm.formState.errors.confirmPassword.message}</p>}
                 </div>
@@ -253,7 +253,7 @@ export default function IndividualRegisterPage() {
               <div className="pt-4 flex justify-end">
                 <button 
                   type="submit" 
-                  className="flex items-center px-6 py-2.5 bg-[hsl(var(--color-primary))] text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
+                  className="flex items-center px-6 py-2.5 bg-[var(--color-primary)] text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
                 >
                   Continue <ChevronRight className="ml-2 w-4 h-4" />
                 </button>
@@ -265,10 +265,10 @@ export default function IndividualRegisterPage() {
           {step === 2 && (
             <form onSubmit={locationForm.handleSubmit(onLocationSubmit)} className="space-y-5 animate-in fade-in slide-in-from-right-4 duration-300">
               <div>
-                <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">State</label>
+                <label className="block text-sm font-medium text-[var(--foreground)] mb-1">State</label>
                 <select 
                   {...locationForm.register("state")}
-                  className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] focus:border-transparent outline-none transition bg-transparent"
+                  className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition bg-transparent"
                 >
                   <option value="">Select a state...</option>
                   {NIGERIAN_STATES.map(state => (
@@ -279,21 +279,21 @@ export default function IndividualRegisterPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">City / LGA</label>
+                <label className="block text-sm font-medium text-[var(--foreground)] mb-1">City / LGA</label>
                 <input 
                   {...locationForm.register("city")} 
-                  className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] focus:border-transparent outline-none transition" 
+                  className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition" 
                   placeholder="e.g. Ikeja, Surulere" 
                 />
                 {locationForm.formState.errors.city && <p className="mt-1 text-sm text-red-500">{locationForm.formState.errors.city.message}</p>}
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Primary Market</label>
+                <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Primary Market</label>
                 <select 
                   {...locationForm.register("marketId")}
                   disabled={!selectedState || loadingMarkets}
-                  className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] focus:border-transparent outline-none transition bg-transparent disabled:opacity-50"
+                  className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition bg-transparent disabled:opacity-50"
                 >
                   <option value="">{loadingMarkets ? "Loading markets..." : "Select a market..."}</option>
                   {markets.map(market => (
@@ -304,14 +304,14 @@ export default function IndividualRegisterPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Street Address</label>
+                <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Street Address</label>
                 <textarea 
                   {...locationForm.register("streetAddress")} 
                   rows={3}
-                  className="w-full px-4 py-2 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] focus:border-transparent outline-none transition resize-none" 
+                  className="w-full px-4 py-2 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent outline-none transition resize-none" 
                   placeholder="Block/Shop number, Street name" 
                 />
-                <p className="mt-1 text-xs text-[hsl(var(--muted-foreground))]">Your address helps buyers find you by market</p>
+                <p className="mt-1 text-xs text-[var(--muted-foreground)]">Your address helps buyers find you by market</p>
                 {locationForm.formState.errors.streetAddress && <p className="mt-1 text-sm text-red-500">{locationForm.formState.errors.streetAddress.message}</p>}
               </div>
 
@@ -319,13 +319,13 @@ export default function IndividualRegisterPage() {
                 <button 
                   type="button" 
                   onClick={() => setStep(1)}
-                  className="flex items-center px-4 py-2.5 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted))] rounded-lg font-medium transition-colors border border-[hsl(var(--border))]"
+                  className="flex items-center px-4 py-2.5 text-[var(--foreground)] hover:bg-[var(--muted)] rounded-lg font-medium transition-colors border border-[var(--border)]"
                 >
                   <ChevronLeft className="mr-2 w-4 h-4" /> Back
                 </button>
                 <button 
                   type="submit" 
-                  className="flex items-center px-6 py-2.5 bg-[hsl(var(--color-primary))] text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
+                  className="flex items-center px-6 py-2.5 bg-[var(--color-primary)] text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
                 >
                   Continue <ChevronRight className="ml-2 w-4 h-4" />
                 </button>
@@ -336,11 +336,11 @@ export default function IndividualRegisterPage() {
           {/* STEP 3: Face Capture */}
           {step === 3 && (
             <div className="animate-in fade-in slide-in-from-right-4 duration-300">
-              <div className="bg-[hsl(var(--color-primary))/0.05] border border-[hsl(var(--color-primary))/0.2] rounded-xl p-4 mb-6">
-                <h4 className="font-semibold text-[hsl(var(--color-primary))] flex items-center">
+              <div className="bg-[color-mix(in_srgb,var(--color-primary),transparent_95%)] border border-[color-mix(in_srgb,var(--color-primary),transparent_80%)] rounded-xl p-4 mb-6">
+                <h4 className="font-semibold text-[var(--color-primary)] flex items-center">
                   <AlertCircle className="w-5 h-5 mr-2" /> Identity Verification
                 </h4>
-                <p className="text-sm text-[hsl(var(--muted-foreground))] mt-1">
+                <p className="text-sm text-[var(--muted-foreground)] mt-1">
                   We capture your face once for identity verification. This keeps our marketplace safe, builds trust with buyers, and is never shared publicly.
                 </p>
               </div>
@@ -351,7 +351,7 @@ export default function IndividualRegisterPage() {
                 <button 
                   type="button" 
                   onClick={() => setStep(2)}
-                  className="flex items-center px-4 py-2.5 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted))] rounded-lg font-medium transition-colors border border-[hsl(var(--border))]"
+                  className="flex items-center px-4 py-2.5 text-[var(--foreground)] hover:bg-[var(--muted)] rounded-lg font-medium transition-colors border border-[var(--border)]"
                 >
                   <ChevronLeft className="mr-2 w-4 h-4" /> Back
                 </button>
@@ -363,28 +363,28 @@ export default function IndividualRegisterPage() {
           {step === 4 && (
             <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
               
-              <div className="bg-[hsl(var(--muted))] rounded-xl p-5 border border-[hsl(var(--border))]">
-                <h3 className="font-display font-semibold text-lg mb-4 text-[hsl(var(--foreground))] border-b border-[hsl(var(--border))] pb-2">Account Details</h3>
+              <div className="bg-[var(--muted)] rounded-xl p-5 border border-[var(--border)]">
+                <h3 className="font-display font-semibold text-lg mb-4 text-[var(--foreground)] border-b border-[var(--border)] pb-2">Account Details</h3>
                 <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4 text-sm">
                   <div>
-                    <dt className="text-[hsl(var(--muted-foreground))] font-medium">Full Name</dt>
-                    <dd className="text-[hsl(var(--foreground))] mt-1">{accountForm.getValues("name")}</dd>
+                    <dt className="text-[var(--muted-foreground)] font-medium">Full Name</dt>
+                    <dd className="text-[var(--foreground)] mt-1">{accountForm.getValues("name")}</dd>
                   </div>
                   <div>
-                    <dt className="text-[hsl(var(--muted-foreground))] font-medium">Email</dt>
-                    <dd className="text-[hsl(var(--foreground))] mt-1">{accountForm.getValues("email")}</dd>
+                    <dt className="text-[var(--muted-foreground)] font-medium">Email</dt>
+                    <dd className="text-[var(--foreground)] mt-1">{accountForm.getValues("email")}</dd>
                   </div>
                   <div>
-                    <dt className="text-[hsl(var(--muted-foreground))] font-medium">Phone</dt>
-                    <dd className="text-[hsl(var(--foreground))] mt-1">{accountForm.getValues("phone")}</dd>
+                    <dt className="text-[var(--muted-foreground)] font-medium">Phone</dt>
+                    <dd className="text-[var(--foreground)] mt-1">{accountForm.getValues("phone")}</dd>
                   </div>
                   <div>
-                    <dt className="text-[hsl(var(--muted-foreground))] font-medium">Location</dt>
-                    <dd className="text-[hsl(var(--foreground))] mt-1">{locationForm.getValues("city")}, {stateSlugToName[locationForm.getValues("state")] || locationForm.getValues("state")}</dd>
+                    <dt className="text-[var(--muted-foreground)] font-medium">Location</dt>
+                    <dd className="text-[var(--foreground)] mt-1">{locationForm.getValues("city")}, {stateSlugToName[locationForm.getValues("state")] || locationForm.getValues("state")}</dd>
                   </div>
                   <div className="sm:col-span-2">
-                    <dt className="text-[hsl(var(--muted-foreground))] font-medium">Address</dt>
-                    <dd className="text-[hsl(var(--foreground))] mt-1">{locationForm.getValues("streetAddress")}</dd>
+                    <dt className="text-[var(--muted-foreground)] font-medium">Address</dt>
+                    <dd className="text-[var(--foreground)] mt-1">{locationForm.getValues("streetAddress")}</dd>
                   </div>
                 </dl>
               </div>
@@ -403,14 +403,14 @@ export default function IndividualRegisterPage() {
                     type="checkbox"
                     checked={agreedToTerms}
                     onChange={(e) => setAgreedToTerms(e.target.checked)}
-                    className="w-4 h-4 rounded border-[hsl(var(--border))] text-[hsl(var(--color-primary))] focus:ring-[hsl(var(--color-primary))] focus:ring-offset-0 bg-transparent cursor-pointer"
+                    className="w-4 h-4 rounded border-[var(--border)] text-[var(--color-primary)] focus:ring-[var(--color-primary)] focus:ring-offset-0 bg-transparent cursor-pointer"
                   />
                 </div>
                 <div className="ml-3 text-sm">
-                  <label htmlFor="terms" className="font-medium text-[hsl(var(--foreground))] cursor-pointer">
+                  <label htmlFor="terms" className="font-medium text-[var(--foreground)] cursor-pointer">
                     I agree to the Terms of Service and Privacy Policy
                   </label>
-                  <p className="text-[hsl(var(--muted-foreground))]">By registering, you agree to our platform rules.</p>
+                  <p className="text-[var(--muted-foreground)]">By registering, you agree to our platform rules.</p>
                 </div>
               </div>
 
@@ -419,14 +419,14 @@ export default function IndividualRegisterPage() {
                   type="button" 
                   onClick={() => setStep(3)}
                   disabled={isSubmitting}
-                  className="flex items-center px-4 py-2.5 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted))] rounded-lg font-medium transition-colors border border-[hsl(var(--border))] disabled:opacity-50"
+                  className="flex items-center px-4 py-2.5 text-[var(--foreground)] hover:bg-[var(--muted)] rounded-lg font-medium transition-colors border border-[var(--border)] disabled:opacity-50"
                 >
                   <ChevronLeft className="mr-2 w-4 h-4" /> Back
                 </button>
                 <button 
                   onClick={finalSubmit}
                   disabled={isSubmitting || !agreedToTerms}
-                  className="flex items-center px-8 py-2.5 bg-[hsl(var(--color-secondary))] text-white rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+                  className="flex items-center px-8 py-2.5 bg-[var(--color-secondary)] text-white rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
                 >
                   {isSubmitting ? (
                     <><Loader2 className="mr-2 w-4 h-4 animate-spin" /> Creating Account...</>

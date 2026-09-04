@@ -63,15 +63,15 @@ function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--muted))] flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-[hsl(var(--background))] rounded-2xl shadow-xl overflow-hidden border border-[hsl(var(--border))] p-8">
+    <div className="min-h-screen bg-[var(--muted)] flex items-center justify-center p-4">
+      <div className="max-w-md w-full bg-[var(--background)] rounded-2xl shadow-xl overflow-hidden border border-[var(--border)] p-8">
         
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[hsl(var(--color-primary))] text-white font-display font-bold text-2xl mb-4 shadow-lg">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[var(--color-primary)] text-white font-display font-bold text-2xl mb-4 shadow-lg">
             L
           </div>
-          <h1 className="text-2xl font-display font-bold text-[hsl(var(--foreground))]">Welcome back</h1>
-          <p className="text-[hsl(var(--muted-foreground))] mt-2 text-sm">Sign in to your ListNG account</p>
+          <h1 className="text-2xl font-display font-bold text-[var(--foreground)]">Welcome back</h1>
+          <p className="text-[var(--muted-foreground)] mt-2 text-sm">Sign in to your ListNG account</p>
         </div>
 
         {error && (
@@ -83,11 +83,11 @@ function LoginForm() {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-[hsl(var(--foreground))] mb-1">Email Address</label>
+            <label className="block text-sm font-medium text-[var(--foreground)] mb-1">Email Address</label>
             <input 
               type="email"
               {...register("email")}
-              className="w-full px-4 py-2.5 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition" 
+              className="w-full px-4 py-2.5 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition" 
               placeholder="you@example.com"
             />
             {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>}
@@ -95,8 +95,8 @@ function LoginForm() {
 
           <div>
             <div className="flex justify-between items-center mb-1">
-              <label className="block text-sm font-medium text-[hsl(var(--foreground))]">Password</label>
-              <Link href="/forgot-password" className="text-xs font-medium text-[hsl(var(--color-primary))] hover:underline underline-offset-2">
+              <label className="block text-sm font-medium text-[var(--foreground)]">Password</label>
+              <Link href="/forgot-password" className="text-xs font-medium text-[var(--color-primary)] hover:underline underline-offset-2">
                 Forgot password?
               </Link>
             </div>
@@ -104,12 +104,12 @@ function LoginForm() {
               <input 
                 type={showPassword ? "text" : "password"}
                 {...register("password")}
-                className="w-full px-4 py-2.5 rounded-lg border border-[hsl(var(--border))] focus:ring-2 focus:ring-[hsl(var(--color-primary))] outline-none transition pr-10" 
+                className="w-full px-4 py-2.5 rounded-lg border border-[var(--border)] focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition pr-10" 
               />
               <button 
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -122,9 +122,9 @@ function LoginForm() {
               id="rememberMe" 
               type="checkbox" 
               {...register("rememberMe")}
-              className="w-4 h-4 rounded border-[hsl(var(--border))] text-[hsl(var(--color-primary))] focus:ring-[hsl(var(--color-primary))]" 
+              className="w-4 h-4 rounded border-[var(--border)] text-[var(--color-primary)] focus:ring-[var(--color-primary)]" 
             />
-            <label htmlFor="rememberMe" className="ml-2 text-sm text-[hsl(var(--foreground))] cursor-pointer">
+            <label htmlFor="rememberMe" className="ml-2 text-sm text-[var(--foreground)] cursor-pointer">
               Remember me for 30 days
             </label>
           </div>
@@ -132,15 +132,15 @@ function LoginForm() {
           <button 
             type="submit" 
             disabled={isSubmitting}
-            className="w-full py-2.5 bg-[hsl(var(--color-primary))] text-white rounded-lg font-medium hover:opacity-90 transition-opacity flex justify-center items-center shadow-md disabled:opacity-70"
+            className="w-full py-2.5 bg-[var(--color-primary)] text-white rounded-lg font-medium hover:opacity-90 transition-opacity flex justify-center items-center shadow-md disabled:opacity-70"
           >
             {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : "Sign In"}
           </button>
         </form>
 
-        <div className="mt-8 text-center text-sm text-[hsl(var(--muted-foreground))]">
+        <div className="mt-8 text-center text-sm text-[var(--muted-foreground)]">
           Don&apos;t have an account?{" "}
-          <Link href="/register" className="font-semibold text-[hsl(var(--color-primary))] hover:underline underline-offset-2">
+          <Link href="/register" className="font-semibold text-[var(--color-primary)] hover:underline underline-offset-2">
             Register now
           </Link>
         </div>

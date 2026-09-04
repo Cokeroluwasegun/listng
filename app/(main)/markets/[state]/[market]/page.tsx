@@ -56,7 +56,7 @@ export default async function MarketDetailPage(props: { params: Promise<{ state:
   }).then(listings => listings.map(l => ({ ...l, price: l.price.toNumber() })));
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--muted))] pb-16">
+    <div className="min-h-screen bg-[var(--muted)] pb-16">
       {/* HERO SECTION */}
       <div className="relative bg-gray-900 text-white pt-16 pb-24 overflow-hidden">
         {market.heroImage ? (
@@ -68,7 +68,7 @@ export default async function MarketDetailPage(props: { params: Promise<{ state:
             priority
           />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--color-primary))] to-[hsl(var(--color-secondary))] opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] opacity-80" />
         )}
         
         <div className="relative z-10 max-w-6xl mx-auto px-4">
@@ -83,7 +83,7 @@ export default async function MarketDetailPage(props: { params: Promise<{ state:
                   {market.city.name}, {market.city.state.name}
                 </span>
                 {market.specialty && (
-                  <span className="bg-[hsl(var(--color-secondary))] px-3 py-1 rounded-full text-sm font-medium">
+                  <span className="bg-[var(--color-secondary)] px-3 py-1 rounded-full text-sm font-medium">
                     {market.specialty}
                   </span>
                 )}
@@ -109,7 +109,7 @@ export default async function MarketDetailPage(props: { params: Promise<{ state:
                 <input 
                   type="text" 
                   placeholder={`Search in ${market.name}...`} 
-                  className="w-full pl-12 pr-4 py-4 rounded-xl shadow-lg outline-none focus:ring-2 focus:ring-[hsl(var(--color-primary))]"
+                  className="w-full pl-12 pr-4 py-4 rounded-xl shadow-lg outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
                 />
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
               </div>
@@ -164,10 +164,10 @@ export default async function MarketDetailPage(props: { params: Promise<{ state:
         <section className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
           <div className="flex flex-col md:flex-row justify-between items-center mb-8 pb-4 border-b">
             <h2 className="text-2xl font-display font-bold text-gray-900 flex items-center gap-2">
-              <Package className="w-6 h-6 text-[hsl(var(--color-primary))]" />
+              <Package className="w-6 h-6 text-[var(--color-primary)]" />
               Recent Listings
             </h2>
-            <Link href={`/search?market=${market.slug}`} className="text-[hsl(var(--color-primary))] font-medium hover:underline mt-4 md:mt-0">
+            <Link href={`/search?market=${market.slug}`} className="text-[var(--color-primary)] font-medium hover:underline mt-4 md:mt-0">
               View all listings &rarr;
             </Link>
           </div>
@@ -175,12 +175,12 @@ export default async function MarketDetailPage(props: { params: Promise<{ state:
         </section>
 
         {/* CTA */}
-        <section className="bg-gradient-to-br from-[hsl(var(--color-primary))] to-orange-600 rounded-3xl p-8 md:p-12 text-center text-white shadow-lg">
+        <section className="bg-gradient-to-br from-[var(--color-primary)] to-orange-600 rounded-3xl p-8 md:p-12 text-center text-white shadow-lg">
           <h2 className="text-3xl font-display font-bold mb-4">Are you selling in {market.name}?</h2>
           <p className="text-lg text-orange-100 mb-8 max-w-2xl mx-auto">
             Join thousands of vendors on ListNG. Create your digital storefront, upload your products, and reach customers nationwide.
           </p>
-          <Link href="/register" className="inline-block bg-white text-[hsl(var(--color-primary))] font-bold text-lg px-8 py-4 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all">
+          <Link href="/register" className="inline-block bg-white text-[var(--color-primary)] font-bold text-lg px-8 py-4 rounded-full shadow-md hover:shadow-xl hover:scale-105 transition-all">
             Register as a Vendor
           </Link>
         </section>

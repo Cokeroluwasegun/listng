@@ -26,7 +26,7 @@ export default function HeroSearch() {
       onSubmit={handleSearch}
       className="flex flex-col md:flex-row gap-3 w-full max-w-4xl mx-auto bg-white p-3 md:rounded-full rounded-2xl shadow-[var(--shadow-sm)]"
     >
-      <div className="flex-1 flex items-center px-4 md:border-r border-[hsl(var(--muted))]">
+      <div className="flex-1 flex items-center px-4 md:border-r border-[var(--muted)]">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
@@ -39,7 +39,7 @@ export default function HeroSearch() {
         />
       </div>
       
-      <div className="flex-1 flex items-center px-4 md:border-r border-[hsl(var(--muted))]">
+      <div className="flex-1 flex items-center px-4 md:border-r border-[var(--muted)]">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -58,7 +58,7 @@ export default function HeroSearch() {
 
       <button 
         type="submit"
-        className="w-full md:w-auto px-8 py-3 bg-[hsl(var(--color-primary))] hover:brightness-110 text-white font-semibold rounded-xl md:rounded-full transition-all duration-200"
+        className="w-full md:w-auto px-8 py-3 bg-[var(--color-primary)] hover:brightness-110 text-white font-semibold rounded-xl md:rounded-full transition-all duration-200"
       >
         Search
       </button>

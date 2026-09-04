@@ -51,8 +51,8 @@ export default async function MarketsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--muted))] pb-12">
-      <div className="bg-[hsl(var(--color-primary))] text-white py-16 px-4">
+    <div className="min-h-screen bg-[var(--muted)] pb-12">
+      <div className="bg-[var(--color-primary)] text-white py-16 px-4">
         <div className="max-w-6xl mx-auto text-center space-y-6">
           <h1 className="text-4xl md:text-5xl font-display font-bold">Browse Nigeria&apos;s Markets</h1>
           <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
@@ -62,7 +62,7 @@ export default async function MarketsPage() {
             <input 
               type="text" 
               placeholder="Search for a market or state..." 
-              className="w-full pl-12 pr-4 py-4 rounded-full shadow-lg outline-none focus:ring-2 focus:ring-[hsl(var(--color-secondary))]"
+              className="w-full pl-12 pr-4 py-4 rounded-full shadow-lg outline-none focus:ring-2 focus:ring-[var(--color-secondary)]"
             />
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
           </div>
@@ -75,10 +75,10 @@ export default async function MarketsPage() {
             <Link key={state.id} href={`/markets/${state.slug}`} className="block group">
               <div className="card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-md h-full flex flex-col">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-orange-50 text-[hsl(var(--color-primary))] flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-orange-50 text-[var(--color-primary)] flex items-center justify-center">
                     <MapPin className="w-5 h-5" />
                   </div>
-                  <h2 className="font-display font-bold text-xl text-gray-900 group-hover:text-[hsl(var(--color-primary))] transition-colors">
+                  <h2 className="font-display font-bold text-xl text-gray-900 group-hover:text-[var(--color-primary)] transition-colors">
                     {state.name}
                   </h2>
                 </div>

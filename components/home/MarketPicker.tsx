@@ -28,13 +28,13 @@ export default function MarketPicker({ markets }: { markets: Market[] }) {
           <Link
             key={market.id}
             href={`/markets/${market.city.state.slug}/${market.slug}`}
-            className="snap-start shrink-0 w-64 sm:w-auto bg-white rounded-2xl p-5 shadow-[var(--shadow-sm)] border border-gray-100 hover:border-[hsl(var(--color-primary))] hover:shadow-md transition-all duration-300 group flex flex-col h-full"
+            className="snap-start shrink-0 w-64 sm:w-auto bg-white rounded-2xl p-5 shadow-[var(--shadow-sm)] border border-gray-100 hover:border-[var(--color-primary)] hover:shadow-md transition-all duration-300 group flex flex-col h-full"
           >
             <div className="flex justify-between items-start mb-2">
-              <h3 className="font-bold text-lg text-gray-900 group-hover:text-[hsl(var(--color-primary))] transition-colors line-clamp-1">
+              <h3 className="font-bold text-lg text-gray-900 group-hover:text-[var(--color-primary)] transition-colors line-clamp-1">
                 {market.name}
               </h3>
-              <span className="inline-block px-2 py-1 text-xs font-medium bg-[hsl(var(--muted))] text-gray-600 rounded-md whitespace-nowrap ml-2">
+              <span className="inline-block px-2 py-1 text-xs font-medium bg-[var(--muted)] text-gray-600 rounded-md whitespace-nowrap ml-2">
                 {market.specialty}
               </span>
             </div>
@@ -47,7 +47,7 @@ export default function MarketPicker({ markets }: { markets: Market[] }) {
               <span className="truncate">{market.city.name}, {market.city.state.name}</span>
             </div>
             
-            <div className="mt-auto flex items-center justify-between text-sm font-medium text-[hsl(var(--color-secondary))]">
+            <div className="mt-auto flex items-center justify-between text-sm font-medium text-[var(--color-secondary)]">
               <span>{market._count.listings.toLocaleString()} Listings</span>
               <span className="bg-emerald-50 text-emerald-600 px-2 py-1 rounded text-xs">{market._count.users.toLocaleString()} Sellers</span>
             </div>

@@ -105,7 +105,7 @@ export default function ListingCard({ listing }: ListingCardProps) {
 
       <div className="p-4 flex flex-col flex-grow">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="text-[hsl(var(--color-secondary))] font-semibold text-sm line-clamp-2 leading-tight flex-grow pr-2">
+          <h3 className="text-[var(--color-secondary)] font-semibold text-sm line-clamp-2 leading-tight flex-grow pr-2">
             {listing.title}
           </h3>
         </div>
@@ -126,7 +126,7 @@ export default function ListingCard({ listing }: ListingCardProps) {
                 {listing.market.name}, {listing.market.city.name}
               </span>
             </div>
-            <span className="font-medium bg-[hsl(var(--muted))] px-2 py-1 rounded-md">
+            <span className="font-medium bg-[var(--muted)] px-2 py-1 rounded-md">
               {listing.condition}
             </span>
           </div>
@@ -143,7 +143,7 @@ export default function ListingCard({ listing }: ListingCardProps) {
                     className="rounded-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full rounded-full bg-[hsl(var(--color-primary))] text-white flex items-center justify-center text-xs font-bold">
+                  <div className="w-full h-full rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center text-xs font-bold">
                     {listing.seller.name.charAt(0).toUpperCase()}
                   </div>
                 )}
