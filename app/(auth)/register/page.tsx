@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { User, Store, ArrowRight, ShieldCheck, CheckCircle } from "lucide-react";
@@ -100,8 +100,10 @@ export default function RegisterPage() {
 }
 
 function AccountTypeCard({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type, selected, onSelect, icon: Icon, title, description, features, badge, badgeColor,
 }: {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type: string; selected: boolean; onSelect: () => void;
   icon: React.ElementType; title: string; description: string;
   features: string[]; badge: string; badgeColor: "green" | "amber";

@@ -518,6 +518,21 @@ model Payment {
   updatedAt   DateTime      @updatedAt
 }
 
+model WebhookEvent {
+  id          String   @id @default(cuid())
+  provider    String
+  eventId     String
+  eventType   String
+  processedAt DateTime @default(now())
+  status      String
+  payload     Json?
+  createdAt   DateTime @default(now())
+
+  @@unique([provider, eventId])
+  @@index([processedAt])
+  @@index([provider, eventType, processedAt])
+}
+
 enum PaymentType {
   SUBSCRIPTION
   LISTING_BOOST

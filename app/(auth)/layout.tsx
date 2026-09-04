@@ -1,6 +1,4 @@
-import Link from "next/link";
-import { Header } from "@/components/layout/Header";
-import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
+import React from "react";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (

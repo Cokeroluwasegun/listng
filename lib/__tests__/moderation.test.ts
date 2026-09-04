@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeAll } from "vitest";
-import { moderateText, logModeration } from "../moderation";
+import { describe, it, expect } from "vitest";
+import { moderateText } from "../moderation";
 
 describe("moderateText", () => {
   it("passes clean text", () => {

@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { FilterPanel } from "@/components/FilterPanel";
-import ListingGrid, { ListingCardProps } from "@/components/listings/ListingGrid";
+import ListingGrid from "@/components/listings/ListingGrid";
 import { SearchX, SlidersHorizontal } from "lucide-react";
 import { Metadata } from "next";
 import { Prisma } from "@prisma/client";

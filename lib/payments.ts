@@ -2,6 +2,8 @@ import { createHmac, timingSafeEqual } from "crypto";
 import { addDays } from "date-fns";
 import { db } from "@/lib/db";
 
+const WEBHOOK_PROVIDER = "paystack";
+
 export function getPaystackSecret(): string | null {
   return process.env.PAYSTACK_SECRET_KEY || null;
 }
@@ -20,6 +22,87 @@ export function verifyPaystackSignature(rawBody: string, signature: string | nul
   } catch {
     return false;
   }
+}
+
+// ─────────────────────────────────────────────
+// Webhook Idempotency
+// ─────────────────────────────────────────────
+
+export type WebhookEventStatus = "PROCESSING" | "PROCESSED" | "FAILED";
+
+export interface IdempotencyResult {
+  isNew: boolean;
+  existingEvent?: {
+    status: string;
+    processedAt: Date;
+  };
+}
+
+export async function checkAndMarkWebhookEvent(
+  eventId: string,
+  eventType: string,
+  payload?: unknown
+): Promise<IdempotencyResult> {
+  const existing = await db.webhookEvent.findUnique({
+    where: {
+      provider_eventId: {
+        provider: WEBHOOK_PROVIDER,
+        eventId,
+      },
+    },
+  });
+
+  if (existing) {
+    return {
+      isNew: false,
+      existingEvent: {
+        status: existing.status,
+        processedAt: existing.processedAt,
+      },
+    };
+  }
+
+  await db.webhookEvent.create({
+    data: {
+      provider: WEBHOOK_PROVIDER,
+      eventId,
+      eventType,
+      status: "PROCESSING",
+      payload: payload as object,
+    },
+  });
+
+  return { isNew: true };
+}
+
+export async function markWebhookEventProcessed(eventId: string): Promise<void> {
+  await db.webhookEvent.update({
+    where: {
+      provider_eventId: {
+        provider: WEBHOOK_PROVIDER,
+        eventId,
+      },
+    },
+    data: { status: "PROCESSED" },
+  });
+}
+
+export async function markWebhookEventFailed(
+  eventId: string,
+  error?: string
+): Promise<void> {
+  await db.webhookEvent.update({
+    where: {
+      provider_eventId: {
+        provider: WEBHOOK_PROVIDER,
+        eventId,
+      },
+    },
+    data: {
+      status: "FAILED",
+      payload: error ? { error } : undefined,
+    },
+  });
 }
 
 interface ActivateResult {

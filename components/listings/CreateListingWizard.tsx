@@ -68,6 +68,7 @@ export function CreateListingWizard({ categories, defaultMarketId, slotsLeft }: 
           setFormData((f) => ({ ...f, marketId: defaultMarketId }));
         }
       })
+      .catch(console.error)
       .finally(() => setLoadingMarkets(false));
   }
 

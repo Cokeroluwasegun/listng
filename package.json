@@ -20,6 +20,8 @@
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:migrate:status": "prisma migrate status",
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
     "db:reset": "prisma migrate reset"
@@ -29,6 +31,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.0",
+    "@neon/config": "^1.3.0",
+    "@neon/env": "^1.2.1",
     "@neondatabase/serverless": "^1.1.0",
     "@prisma/adapter-neon": "^7.9.1",
     "@prisma/adapter-pg": "^7.9.1",
@@ -51,6 +55,7 @@
     "@radix-ui/react-tabs": "^1.1.21",
     "@radix-ui/react-toast": "^1.2.23",
     "@radix-ui/react-tooltip": "^1.2.16",
+    "@react-email/components": "^1.0.12",
     "@sentry/nextjs": "^10.0.0",
     "@tanstack/react-query": "^5.101.4",
     "@uploadthing/react": "^7.3.3",

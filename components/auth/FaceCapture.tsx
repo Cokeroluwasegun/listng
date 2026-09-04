@@ -34,7 +34,7 @@ export function FaceCapture({ onCapture, onSkip }: FaceCaptureProps) {
         setError("Failed to load face detection models.");
       }
     };
-    loadModels();
+    void loadModels();
   }, []);
 
   // Start webcam
@@ -69,7 +69,7 @@ export function FaceCapture({ onCapture, onSkip }: FaceCaptureProps) {
 
   // Start detection when stream is active
   useEffect(() => {
-    let intervalId: NodeJS.Timeout;
+    let intervalId: ReturnType<typeof setInterval>;
 
     if (streamActive && modelsLoaded && !captured) {
       intervalId = setInterval(async () => {

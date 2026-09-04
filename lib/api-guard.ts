@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth as betterAuth } from "@/lib/auth";
 import { csrfProtect } from "@/lib/csrf";
-import { logger, newRequestId } from "@/lib/logger";
+import { logger } from "@/lib/logger";
 import { getOrAssignRequestId, withRequestIdHeader } from "@/lib/request-id";
 
 export type RouteContext = "public" | "protected" | "admin";

@@ -1,5 +1,7 @@
+import React from "react";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
+import Image from "next/image";
 import { auth } from "@/lib/auth";
 import { SignOutButton } from "@/components/auth/SignOutButton";
 import Link from "next/link";
@@ -66,9 +68,15 @@ export default async function DashboardLayout({
 
         <div className="p-4 border-t border-gray-200">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
+            <div className="relative w-10 h-10 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
               {user.image ? (
-                <img src={user.image} alt={user.name} className="w-full h-full object-cover" />
+                <Image
+                  src={user.image}
+                  alt={user.name ?? "User"}
+                  fill
+                  sizes="40px"
+                  className="object-cover"
+                />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-primary/10 text-primary font-bold">
                   {user.name?.charAt(0)}

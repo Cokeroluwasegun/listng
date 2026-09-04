@@ -1,21 +1,21 @@
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
+import Image from "next/image";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import Link from "next/link";
 import { formatPrice, formatTimeAgo, cn } from "@/lib/utils";
-import { Search, Plus, MoreVertical, Edit2, CheckCircle, Power, Trash2, Eye, Package } from "lucide-react";
+import { Plus, MoreVertical, Edit2, CheckCircle, Power, Trash2, Eye, Package } from "lucide-react";
 
 export default async function DashboardListingsPage() {
   const session = await auth.api.getSession({
-    headers: await headers()
+    headers: await headers(),
   });
 
   if (!session?.user) {
     redirect("/login");
   }
 
-  // Real DB fetch
   const [rows, subscription] = await Promise.all([
     db.listing.findMany({
       where: { sellerId: session.user.id },
@@ -58,8 +58,8 @@ export default async function DashboardListingsPage() {
           <h1 className="text-2xl font-bold text-gray-900">My Listings</h1>
           <p className="text-gray-500 mt-1">Manage all your products and services</p>
         </div>
-        <Link 
-          href="/listings/create" 
+        <Link
+          href="/listings/create"
           className="inline-flex items-center justify-center px-4 py-2.5 bg-primary text-white font-medium rounded-xl hover:bg-primary/90 transition-colors shadow-sm whitespace-nowrap"
         >
           <Plus className="w-5 h-5 mr-2" />
@@ -67,28 +67,30 @@ export default async function DashboardListingsPage() {
         </Link>
       </div>
 
-      {/* Usage Bar */}
       <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
         <div className="flex justify-between items-center mb-2 text-sm">
           <span className="font-medium text-gray-700">Listing Slots</span>
-          <span className="text-gray-500">You&apos;ve used {usedSlots} of {maxSlots} listing slots</span>
+          <span className="text-gray-500">
+            You&apos;ve used {usedSlots} of {maxSlots} listing slots
+          </span>
         </div>
         <div className="w-full bg-gray-100 rounded-full h-2">
-          <div 
-            className="bg-primary h-2 rounded-full" 
+          <div
+            className="bg-primary h-2 rounded-full"
             style={{ width: `${Math.min((usedSlots / maxSlots) * 100, 100)}%` }}
           />
         </div>
       </div>
 
-      {/* Filters */}
       <div className="flex overflow-x-auto pb-2 -mb-2 space-x-2">
-        {['All', 'Active', 'Pending', 'Inactive', 'Sold', 'Rejected'].map((filter, i) => (
-          <button 
+        {["All", "Active", "Pending", "Inactive", "Sold", "Rejected"].map((filter, i) => (
+          <button
             key={filter}
             className={cn(
               "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors border",
-              i === 0 ? "bg-gray-900 text-white border-gray-900" : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
+              i === 0
+                ? "bg-gray-900 text-white border-gray-900"
+                : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
             )}
           >
             {filter}
@@ -96,14 +98,15 @@ export default async function DashboardListingsPage() {
         ))}
       </div>
 
-      {/* Listings */}
       {listings.length === 0 ? (
         <div className="text-center py-24 bg-white rounded-2xl border border-dashed border-gray-300">
           <Package className="w-12 h-12 text-gray-300 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-1">No listings yet</h3>
-          <p className="text-gray-500 mb-6">You haven&apos;t posted any listings yet. Start selling today!</p>
-          <Link 
-            href="/listings/create" 
+          <p className="text-gray-500 mb-6">
+            You haven&apos;t posted any listings yet. Start selling today!
+          </p>
+          <Link
+            href="/listings/create"
             className="inline-flex items-center justify-center px-4 py-2 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors"
           >
             <Plus className="w-4 h-4 mr-2" />
@@ -112,7 +115,6 @@ export default async function DashboardListingsPage() {
         </div>
       ) : (
         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-          {/* Desktop Table */}
           <div className="hidden md:block overflow-x-auto">
             <table className="w-full text-left text-sm text-gray-600">
               <thead className="bg-gray-50 border-b border-gray-200 text-gray-900 font-semibold">
@@ -130,11 +132,19 @@ export default async function DashboardListingsPage() {
                   <tr key={listing.id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
-                          <img src={listing.image} alt={listing.title} className="w-full h-full object-cover" />
+                        <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+                          <Image
+                            src={listing.image || "https://placehold.co/64x64/f3f4f6/9ca3af?text=N/A"}
+                            alt={listing.title}
+                            fill
+                            sizes="64px"
+                            className="object-cover"
+                          />
                         </div>
                         <div>
-                          <p className="font-medium text-gray-900 truncate max-w-[200px] lg:max-w-xs">{listing.title}</p>
+                          <p className="font-medium text-gray-900 truncate max-w-[200px] lg:max-w-xs">
+                            {listing.title}
+                          </p>
                           <p className="text-xs text-gray-500 mt-1">{listing.category}</p>
                         </div>
                       </div>
@@ -143,7 +153,12 @@ export default async function DashboardListingsPage() {
                       {formatPrice(listing.price)}
                     </td>
                     <td className="px-6 py-4">
-                      <span className={cn("inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold", statusColors[listing.status] || statusColors.INACTIVE)}>
+                      <span
+                        className={cn(
+                          "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold",
+                          statusColors[listing.status] || statusColors.INACTIVE
+                        )}
+                      >
                         {listing.status}
                       </span>
                     </td>
@@ -158,16 +173,28 @@ export default async function DashboardListingsPage() {
                     </td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-2">
-                        <button title="Edit" className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+                        <button
+                          title="Edit"
+                          className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                        >
                           <Edit2 className="w-4 h-4" />
                         </button>
-                        <button title="Mark as Sold" className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors">
+                        <button
+                          title="Mark as Sold"
+                          className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                        >
                           <CheckCircle className="w-4 h-4" />
                         </button>
-                        <button title="Deactivate" className="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors">
+                        <button
+                          title="Deactivate"
+                          className="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+                        >
                           <Power className="w-4 h-4" />
                         </button>
-                        <button title="Delete" className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                        <button
+                          title="Delete"
+                          className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        >
                           <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
@@ -178,12 +205,17 @@ export default async function DashboardListingsPage() {
             </table>
           </div>
 
-          {/* Mobile Cards */}
           <div className="md:hidden divide-y divide-gray-100">
             {listings.map((listing) => (
               <div key={listing.id} className="p-4 flex gap-4">
-                <div className="w-24 h-24 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
-                  <img src={listing.image} alt={listing.title} className="w-full h-full object-cover" />
+                <div className="relative w-24 h-24 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+                  <Image
+                    src={listing.image || "https://placehold.co/96x96/f3f4f6/9ca3af?text=N/A"}
+                    alt={listing.title}
+                    fill
+                    sizes="96px"
+                    className="object-cover"
+                  />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start mb-1">
@@ -194,7 +226,12 @@ export default async function DashboardListingsPage() {
                   </div>
                   <p className="font-bold text-gray-900 mb-2">{formatPrice(listing.price)}</p>
                   <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <span className={cn("inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide", statusColors[listing.status] || statusColors.INACTIVE)}>
+                    <span
+                      className={cn(
+                        "inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide",
+                        statusColors[listing.status] || statusColors.INACTIVE
+                      )}
+                    >
                       {listing.status}
                     </span>
                     <span className="text-xs text-gray-500 flex items-center gap-1">

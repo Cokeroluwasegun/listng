@@ -58,7 +58,7 @@ export function AdminHeroSpotActions({ spotId, status }: AdminHeroSpotActionsPro
       <button
         disabled={busy}
         onClick={() => {
-          if (confirm("Delete this hero spot?")) call("delete");
+          if (confirm("Delete this hero spot?")) void call("delete");
         }}
         className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition disabled:opacity-50"
         title="Delete"

@@ -1,10 +1,9 @@
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
-import { db } from "@/lib/db";
 import Link from "next/link";
-import { Package, Eye, MessageSquare, Heart, Clock, ArrowRight, Plus } from "lucide-react";
 import { formatTimeAgo } from "@/lib/utils";
+import { Package, Eye, MessageSquare, Heart, Clock, ArrowRight, Plus } from "lucide-react";
 
 export default async function DashboardPage() {
   const session = await auth.api.getSession({
@@ -14,8 +13,6 @@ export default async function DashboardPage() {
   if (!session?.user) {
     redirect("/login");
   }
-
-  const userId = session.user.id;
 
   // Mock fetching data. In reality, you'd query the DB here.
   const stats = {

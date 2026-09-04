@@ -70,7 +70,7 @@ export function AdminListingActions({ listingId, status, featured }: AdminListin
         disabled={busy}
         onClick={() => {
           if (confirm("Delete this listing permanently?")) {
-            call(`/api/admin/listings/${listingId}`, "DELETE");
+            void call(`/api/admin/listings/${listingId}`, "DELETE");
           }
         }}
         className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition disabled:opacity-50"
