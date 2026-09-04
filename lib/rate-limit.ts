@@ -15,76 +15,31 @@ export function getRedis(): Redis | null {
   return _redis;
 }
 
-function getOrCreateRedis(): Redis {
-  const r = getRedis();
-  if (!r) throw new Error("Upstash Redis not configured");
-  return r;
+interface LimiterConfig {
+  limit: number;
+  windowMs: number;
+  prefix: string;
 }
 
-// ─────────────────────────────────────────────
-// Named limiters — preferred for new code
-// Each has its own Redis prefix + sliding window
-// ─────────────────────────────────────────────
+function getOrCreateLimiter(config: LimiterConfig): Ratelimit | null {
+  const redis = getRedis();
+  if (!redis) return null;
+  return new Ratelimit({
+    redis,
+    limiter: Ratelimit.slidingWindow(config.limit, `${config.windowMs}ms`),
+    analytics: false,
+    prefix: config.prefix,
+  });
+}
 
-export const authLimiter = new Ratelimit({
-  redis: getOrCreateRedis(),
-  limiter: Ratelimit.slidingWindow(5, "15 m"),
-  analytics: true,
-  prefix: "rl:auth",
-});
-
-export const authLoginLimiter = new Ratelimit({
-  redis: getOrCreateRedis(),
-  limiter: Ratelimit.slidingWindow(10, "5 m"),
-  analytics: true,
-  prefix: "rl:auth:login",
-});
-
-export const authRegisterLimiter = new Ratelimit({
-  redis: getOrCreateRedis(),
-  limiter: Ratelimit.slidingWindow(5, "1 h"),
-  analytics: true,
-  prefix: "rl:auth:register",
-});
-
-export const apiLimiter = new Ratelimit({
-  redis: getOrCreateRedis(),
-  limiter: Ratelimit.slidingWindow(100, "1 m"),
-  analytics: true,
-  prefix: "rl:api",
-});
-
-export const apiWriteLimiter = new Ratelimit({
-  redis: getOrCreateRedis(),
-  limiter: Ratelimit.slidingWindow(20, "1 h"),
-  analytics: true,
-  prefix: "rl:api:write",
-});
-
-export const paymentLimiter = new Ratelimit({
-  redis: getOrCreateRedis(),
-  limiter: Ratelimit.slidingWindow(10, "1 h"),
-  analytics: true,
-  prefix: "rl:payment",
-});
-
-export const messageLimiter = new Ratelimit({
-  redis: getOrCreateRedis(),
-  limiter: Ratelimit.slidingWindow(60, "1 h"),
-  analytics: true,
-  prefix: "rl:message",
-});
-
-export const listingLimiter = new Ratelimit({
-  redis: getOrCreateRedis(),
-  limiter: Ratelimit.slidingWindow(20, "1 h"),
-  analytics: true,
-  prefix: "rl:listing",
-});
-
-// ─────────────────────────────────────────────
-// Named limiter helper — falls back to no-op when Redis unavailable
-// ─────────────────────────────────────────────
+export const authLimiter = { config: { limit: 5, windowMs: 900_000, prefix: "rl:auth" } };
+export const authLoginLimiter = { config: { limit: 10, windowMs: 300_000, prefix: "rl:auth:login" } };
+export const authRegisterLimiter = { config: { limit: 5, windowMs: 3_600_000, prefix: "rl:auth:register" } };
+export const apiLimiter = { config: { limit: 100, windowMs: 60_000, prefix: "rl:api" } };
+export const apiWriteLimiter = { config: { limit: 20, windowMs: 3_600_000, prefix: "rl:api:write" } };
+export const paymentLimiter = { config: { limit: 10, windowMs: 3_600_000, prefix: "rl:payment" } };
+export const messageLimiter = { config: { limit: 60, windowMs: 3_600_000, prefix: "rl:message" } };
+export const listingLimiter = { config: { limit: 20, windowMs: 3_600_000, prefix: "rl:listing" } };
 
 export interface RateLimitResult {
   success: boolean;
@@ -95,11 +50,11 @@ export interface RateLimitResult {
 }
 
 export async function limitByName(
-  limiter: Ratelimit,
+  limiterDef: { config: LimiterConfig },
   key: string
 ): Promise<RateLimitResult> {
-  const redis = getRedis();
-  if (!redis) {
+  const limiter = getOrCreateLimiter(limiterDef.config);
+  if (!limiter) {
     return { success: true, remaining: 999, retryAfterMs: 0, limit: 999, reset: Date.now() + 60_000 };
   }
   const r = await limiter.limit(key);
@@ -112,19 +67,9 @@ export async function limitByName(
   };
 }
 
-// ─────────────────────────────────────────────
-// Legacy API — kept for backward compatibility with existing call sites
-// ─────────────────────────────────────────────
-
-export interface RateLimitOptions {
-  limit: number;
-  windowMs: number;
-  prefix?: string;
-}
-
 export async function rateLimit(
   key: string,
-  { limit, windowMs, prefix = "rl" }: RateLimitOptions
+  { limit, windowMs, prefix = "rl" }: { limit: number; windowMs: number; prefix?: string }
 ): Promise<RateLimitResult> {
   const redis = getRedis();
   if (!redis) {

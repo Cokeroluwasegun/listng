@@ -1,6 +1,6 @@
 {
   "installCommand": "npm install --legacy-peer-deps",
-  "buildCommand": "DATABASE_URL='postgresql://placeholder' npx prisma generate && npm run build",
+  "buildCommand": "DATABASE_URL='postgresql://placeholder' UPSTASH_REDIS_REST_URL='https://placeholder.upstash.io' UPSTASH_REDIS_REST_TOKEN='placeholder' npx prisma generate && npm run build",
   "crons": [
     {
       "path": "/api/cron/sweep",
