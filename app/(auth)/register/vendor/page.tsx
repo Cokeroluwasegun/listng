@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { ChevronRight, ChevronLeft, Loader2, CheckCircle2, ShieldCheck } from "lucide-react";
+import { ChevronRight, ChevronLeft, Loader2, CheckCircle2, ShieldCheck, AlertCircle } from "lucide-react";
 import { FaceCapture } from "@/components/auth/FaceCapture";
 
 const NIGERIAN_STATES = [
@@ -412,8 +412,39 @@ export default function VendorRegisterPage() {
           {/* STEP 4: Face Capture */}
           {step === 4 && (
             <div className="animate-in fade-in slide-in-from-right-4 duration-300">
+              <div className="bg-[color-mix(in_srgb,var(--color-primary),transparent_95%)] border border-[color-mix(in_srgb,var(--color-primary),transparent_80%)] rounded-xl p-4 mb-6">
+                <h4 className="font-semibold text-[var(--color-primary)] flex items-center">
+                  <AlertCircle className="w-5 h-5 mr-2" /> Identity Verification
+                </h4>
+                <p className="text-sm text-[var(--muted-foreground)] mt-1">
+                  We capture your face once for identity verification. This keeps our marketplace safe, builds trust with buyers, and is never shared publicly.
+                </p>
+                <p className="text-xs text-[var(--muted-foreground)] mt-2 italic">
+                  Temporary: face verification is skippable while government accreditation is pending. You can verify later from your account settings.
+                </p>
+              </div>
+
               <FaceCapture onCapture={handleFaceCapture} />
-              <div className="pt-4"><button onClick={() => setStep(3)} className="text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)]">Back</button></div>
+
+              <div className="pt-6 flex justify-between">
+                <button
+                  type="button"
+                  onClick={() => setStep(3)}
+                  className="flex items-center px-4 py-2.5 text-[var(--foreground)] hover:bg-[var(--muted)] rounded-lg font-medium transition-colors border border-[var(--border)]"
+                >
+                  <ChevronLeft className="mr-2 w-4 h-4" /> Back
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFaceDescriptor(null);
+                    setStep(5);
+                  }}
+                  className="flex items-center px-4 py-2.5 text-[var(--color-primary)] hover:bg-[color-mix(in_srgb,var(--color-primary),transparent_92%)] rounded-lg font-medium transition-colors border border-[color-mix(in_srgb,var(--color-primary),transparent_70%)]"
+                >
+                  Skip for now <ChevronRight className="ml-2 w-4 h-4" />
+                </button>
+              </div>
             </div>
           )}
 

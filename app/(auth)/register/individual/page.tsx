@@ -343,17 +343,30 @@ export default function IndividualRegisterPage() {
                 <p className="text-sm text-[var(--muted-foreground)] mt-1">
                   We capture your face once for identity verification. This keeps our marketplace safe, builds trust with buyers, and is never shared publicly.
                 </p>
+                <p className="text-xs text-[var(--muted-foreground)] mt-2 italic">
+                  Temporary: face verification is skippable while government accreditation is pending. You can verify later from your account settings.
+                </p>
               </div>
 
               <FaceCapture onCapture={handleFaceCapture} />
 
-              <div className="pt-6 flex justify-start">
-                <button 
-                  type="button" 
+              <div className="pt-6 flex justify-between">
+                <button
+                  type="button"
                   onClick={() => setStep(2)}
                   className="flex items-center px-4 py-2.5 text-[var(--foreground)] hover:bg-[var(--muted)] rounded-lg font-medium transition-colors border border-[var(--border)]"
                 >
                   <ChevronLeft className="mr-2 w-4 h-4" /> Back
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFaceDescriptor(null);
+                    setStep(4);
+                  }}
+                  className="flex items-center px-4 py-2.5 text-[var(--color-primary)] hover:bg-[color-mix(in_srgb,var(--color-primary),transparent_92%)] rounded-lg font-medium transition-colors border border-[color-mix(in_srgb,var(--color-primary),transparent_70%)]"
+                >
+                  Skip for now <ChevronRight className="ml-2 w-4 h-4" />
                 </button>
               </div>
             </div>
